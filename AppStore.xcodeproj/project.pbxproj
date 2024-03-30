@@ -16,6 +16,11 @@
 		B4EA32772BB7D74600BC3ECA /* AppStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32762BB7D74600BC3ECA /* AppStoreTests.swift */; };
 		B4EA32812BB7D74600BC3ECA /* AppStoreUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32802BB7D74600BC3ECA /* AppStoreUITests.swift */; };
 		B4EA32832BB7D74600BC3ECA /* AppStoreUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32822BB7D74600BC3ECA /* AppStoreUITestsLaunchTests.swift */; };
+		B4EA32942BB7DAF300BC3ECA /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = B4EA32932BB7DAF300BC3ECA /* Moya */; };
+		B4EA32972BB7DB1000BC3ECA /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = B4EA32962BB7DB1000BC3ECA /* Kingfisher */; };
+		B4EA329A2BB7DB1C00BC3ECA /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = B4EA32992BB7DB1C00BC3ECA /* RxSwift */; };
+		B4EA329C2BB7DB2500BC3ECA /* RxDataSources in Frameworks */ = {isa = PBXBuildFile; productRef = B4EA329B2BB7DB2500BC3ECA /* RxDataSources */; };
+		B4EA329E2BB7DB4300BC3ECA /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = B4EA329D2BB7DB4300BC3ECA /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +61,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4EA329A2BB7DB1C00BC3ECA /* RxSwift in Frameworks */,
+				B4EA329C2BB7DB2500BC3ECA /* RxDataSources in Frameworks */,
+				B4EA32972BB7DB1000BC3ECA /* Kingfisher in Frameworks */,
+				B4EA32942BB7DAF300BC3ECA /* Moya in Frameworks */,
+				B4EA329E2BB7DB4300BC3ECA /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +93,7 @@
 				B4EA32752BB7D74600BC3ECA /* AppStoreTests */,
 				B4EA327F2BB7D74600BC3ECA /* AppStoreUITests */,
 				B4EA325D2BB7D74500BC3ECA /* Products */,
+				B4EA32982BB7DB1C00BC3ECA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -127,6 +138,13 @@
 			path = AppStoreUITests;
 			sourceTree = "<group>";
 		};
+		B4EA32982BB7DB1C00BC3ECA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -143,6 +161,13 @@
 			dependencies = (
 			);
 			name = AppStore;
+			packageProductDependencies = (
+				B4EA32932BB7DAF300BC3ECA /* Moya */,
+				B4EA32962BB7DB1000BC3ECA /* Kingfisher */,
+				B4EA32992BB7DB1C00BC3ECA /* RxSwift */,
+				B4EA329B2BB7DB2500BC3ECA /* RxDataSources */,
+				B4EA329D2BB7DB4300BC3ECA /* SnapKit */,
+			);
 			productName = AppStore;
 			productReference = B4EA325C2BB7D74500BC3ECA /* AppStore.app */;
 			productType = "com.apple.product-type.application";
@@ -215,6 +240,13 @@
 				Base,
 			);
 			mainGroup = B4EA32532BB7D74500BC3ECA;
+			packageReferences = (
+				B4EA328F2BB7DA6F00BC3ECA /* XCRemoteSwiftPackageReference "SnapKit" */,
+				B4EA32902BB7DA7E00BC3ECA /* XCRemoteSwiftPackageReference "RxSwift" */,
+				B4EA32912BB7DACB00BC3ECA /* XCRemoteSwiftPackageReference "RxDataSources" */,
+				B4EA32922BB7DAF300BC3ECA /* XCRemoteSwiftPackageReference "Moya" */,
+				B4EA32952BB7DB1000BC3ECA /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = B4EA325D2BB7D74500BC3ECA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -609,6 +641,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		B4EA328F2BB7DA6F00BC3ECA /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.7.1;
+			};
+		};
+		B4EA32902BB7DA7E00BC3ECA /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.6.0;
+			};
+		};
+		B4EA32912BB7DACB00BC3ECA /* XCRemoteSwiftPackageReference "RxDataSources" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/RxSwiftCommunity/RxDataSources";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.2;
+			};
+		};
+		B4EA32922BB7DAF300BC3ECA /* XCRemoteSwiftPackageReference "Moya" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Moya/Moya";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 15.0.3;
+			};
+		};
+		B4EA32952BB7DB1000BC3ECA /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.11.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		B4EA32932BB7DAF300BC3ECA /* Moya */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4EA32922BB7DAF300BC3ECA /* XCRemoteSwiftPackageReference "Moya" */;
+			productName = Moya;
+		};
+		B4EA32962BB7DB1000BC3ECA /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4EA32952BB7DB1000BC3ECA /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+		B4EA32992BB7DB1C00BC3ECA /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4EA32902BB7DA7E00BC3ECA /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		B4EA329B2BB7DB2500BC3ECA /* RxDataSources */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4EA32912BB7DACB00BC3ECA /* XCRemoteSwiftPackageReference "RxDataSources" */;
+			productName = RxDataSources;
+		};
+		B4EA329D2BB7DB4300BC3ECA /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4EA328F2BB7DA6F00BC3ECA /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = B4EA32542BB7D74500BC3ECA /* Project object */;
 }
