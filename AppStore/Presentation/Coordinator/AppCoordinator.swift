@@ -15,13 +15,22 @@ final class AppCoordinator: Coordinator {
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
+        navigationController.setNavigationBarHidden(true, animated: false)
     }
 
     func start() {
+        connectTabBar()
+    }
 
+    private func connectTabBar() {
+        let tabBarCoordinator = TabBarCoordinator(navigationController)
+        tabBarCoordinator.delegate = self
+        tabBarCoordinator.start()
+        childCoordinators.append(tabBarCoordinator)
     }
 }
 
+// MARK: - CoordinatorDelegate
 extension AppCoordinator: CoordinatorDelegate {
     func didFinish(childCoordinator: Coordinator) {
         finish()
