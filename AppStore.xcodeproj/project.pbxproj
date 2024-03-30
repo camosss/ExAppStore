@@ -25,6 +25,7 @@
 		B4EA32B62BB7E93000BC3ECA /* TabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32B52BB7E93000BC3ECA /* TabBarItem.swift */; };
 		B4EA32BE2BB800C600BC3ECA /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32BD2BB800C600BC3ECA /* SearchCoordinator.swift */; };
 		B4EA32C02BB8010200BC3ECA /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32BF2BB8010200BC3ECA /* SearchViewController.swift */; };
+		B4EA32C42BB8043600BC3ECA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32C32BB8043600BC3ECA /* BaseViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		B4EA32B52BB7E93000BC3ECA /* TabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarItem.swift; sourceTree = "<group>"; };
 		B4EA32BD2BB800C600BC3ECA /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SearchCoordinator.swift; path = ../../../../../../../Documents/SearchCoordinator.swift; sourceTree = "<group>"; };
 		B4EA32BF2BB8010200BC3ECA /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		B4EA32C32BB8043600BC3ECA /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -166,6 +168,7 @@
 		B4EA32A12BB7E0A300BC3ECA /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				B4EA32C12BB8042800BC3ECA /* Common */,
 				B4EA32A62BB7E3A800BC3ECA /* Coordinator */,
 				B4EA32AC2BB7E74800BC3ECA /* TabBar */,
 			);
@@ -259,6 +262,22 @@
 				B4EA32BD2BB800C600BC3ECA /* SearchCoordinator.swift */,
 			);
 			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		B4EA32C12BB8042800BC3ECA /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32C22BB8042E00BC3ECA /* BaseView */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		B4EA32C22BB8042E00BC3ECA /* BaseView */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32C32BB8043600BC3ECA /* BaseViewController.swift */,
+			);
+			path = BaseView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -410,6 +429,7 @@
 				B4EA32C02BB8010200BC3ECA /* SearchViewController.swift in Sources */,
 				B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */,
 				B4EA32AF2BB7E78300BC3ECA /* TabBarCoordinator.swift in Sources */,
+				B4EA32C42BB8043600BC3ECA /* BaseViewController.swift in Sources */,
 				B4EA32B62BB7E93000BC3ECA /* TabBarItem.swift in Sources */,
 				B4EA32A92BB7E3D700BC3ECA /* Coordinator.swift in Sources */,
 				B4EA32BE2BB800C600BC3ECA /* SearchCoordinator.swift in Sources */,
