@@ -32,6 +32,7 @@
 		B4EA32D02BB87B2200BC3ECA /* RecentSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32CF2BB87B2200BC3ECA /* RecentSearchTableViewCell.swift */; };
 		B4EA32D32BB87C8100BC3ECA /* RecentSearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32D22BB87C8100BC3ECA /* RecentSearchHeaderView.swift */; };
 		B4EA32D52BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32D42BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift */; };
+		B4EA32D92BB8803C00BC3ECA /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32D82BB8803C00BC3ECA /* SearchResultsTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		B4EA32CF2BB87B2200BC3ECA /* RecentSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchTableViewCell.swift; sourceTree = "<group>"; };
 		B4EA32D22BB87C8100BC3ECA /* RecentSearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentSearchHeaderView.swift; sourceTree = "<group>"; };
 		B4EA32D42BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableViewHeaderFooterView.swift; sourceTree = "<group>"; };
+		B4EA32D82BB8803C00BC3ECA /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -326,6 +328,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32CF2BB87B2200BC3ECA /* RecentSearchTableViewCell.swift */,
+				B4EA32D82BB8803C00BC3ECA /* SearchResultsTableViewCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -494,6 +497,7 @@
 				B4EA32CB2BB8773C00BC3ECA /* ReusableView+Ex.swift in Sources */,
 				B4EA32C42BB8043600BC3ECA /* BaseViewController.swift in Sources */,
 				B4EA32B62BB7E93000BC3ECA /* TabBarItem.swift in Sources */,
+				B4EA32D92BB8803C00BC3ECA /* SearchResultsTableViewCell.swift in Sources */,
 				B4EA32A92BB7E3D700BC3ECA /* Coordinator.swift in Sources */,
 				B4EA32BE2BB800C600BC3ECA /* SearchCoordinator.swift in Sources */,
 				B4EA32C62BB875CF00BC3ECA /* SearchResultsViewController.swift in Sources */,
