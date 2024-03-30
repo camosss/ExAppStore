@@ -41,7 +41,16 @@ final class TabBarCoordinator: Coordinator {
         of tabBar: TabBarItem,
         to tabNavigationController: UINavigationController
     ) {
+        switch tabBar {
+        case .search:
+            let searchCoordinator = SearchCoordinator(tabNavigationController)
+            searchCoordinator.delegate = self
+            self.childCoordinators.append(searchCoordinator)
+            searchCoordinator.start()
 
+        default:
+            break
+        }
     }
 
     private func configureTabBarController(with tabViewController: [UIViewController]) {
