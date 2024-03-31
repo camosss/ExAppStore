@@ -12,9 +12,6 @@ final class SearchViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private let searchController = UISearchController(
-        searchResultsController: SearchResultsViewController()
-    )
     private let tableView = UITableView()
 
     // MARK: - Lifecycle
@@ -41,11 +38,23 @@ final class SearchViewController: BaseViewController {
         super.setConfigurations()
         title = "검색"
 
+        setSearchController()
+        setTableView()
+    }
+
+    private func setSearchController() {
+        let resultsViewController = SearchResultsViewController()
+        let searchController = UISearchController(
+            searchResultsController: resultsViewController
+        )
+
         searchController.searchBar.placeholder = "게임, 앱, 스토리 등"
         searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
+    }
 
+    private func setTableView() {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
