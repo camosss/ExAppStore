@@ -49,6 +49,7 @@
 		B4EA33012BB9BB1900BC3ECA /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */; };
 		B4EA33032BB9BB3100BC3ECA /* UILabel+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */; };
 		B4EA33062BB9C29E00BC3ECA /* ScreenshotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */; };
+		B4EA33082BB9CC8100BC3ECA /* Int+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +111,7 @@
 		B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
 		B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ex.swift"; sourceTree = "<group>"; };
 		B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotImageView.swift; sourceTree = "<group>"; };
+		B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -342,10 +344,8 @@
 		B4EA32C92BB8773000BC3ECA /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				B4EA32CA2BB8773C00BC3ECA /* ReusableView+Ex.swift */,
-				B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */,
-				B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */,
-				B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */,
+				B4EA330A2BB9CCC300BC3ECA /* Foundation */,
+				B4EA33092BB9CCAF00BC3ECA /* UIKit */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -475,6 +475,25 @@
 				B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */,
 			);
 			path = Components;
+			sourceTree = "<group>";
+		};
+		B4EA33092BB9CCAF00BC3ECA /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32CA2BB8773C00BC3ECA /* ReusableView+Ex.swift */,
+				B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */,
+				B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */,
+				B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		B4EA330A2BB9CCC300BC3ECA /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +648,7 @@
 				B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */,
 				B4EA32D32BB87C8100BC3ECA /* RecentSearchHeaderView.swift in Sources */,
 				B4EA32C02BB8010200BC3ECA /* SearchViewController.swift in Sources */,
+				B4EA33082BB9CC8100BC3ECA /* Int+Ex.swift in Sources */,
 				B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */,
 				B4EA32D52BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift in Sources */,
 				B4EA32AF2BB7E78300BC3ECA /* TabBarCoordinator.swift in Sources */,

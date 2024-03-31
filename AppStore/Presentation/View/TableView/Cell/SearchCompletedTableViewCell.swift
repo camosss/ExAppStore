@@ -168,7 +168,10 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
             descriptionLabel.setTextWithLineHeight(text: description, lineHeight: 14)
         }
         if let userRatingCount = model?.userRatingCount {
-            ratingCountLabel.setTextWithLineHeight(text: "\(userRatingCount)", lineHeight: 14)
+            ratingCountLabel.setTextWithLineHeight(
+                text: userRatingCount.formattedString,
+                lineHeight: 14
+            )
         }
 
         if let screenshotUrls = model?.screenshotUrls {
