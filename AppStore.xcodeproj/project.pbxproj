@@ -46,6 +46,9 @@
 		B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */; };
 		B4EA32FD2BB96A7100BC3ECA /* SearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */; };
 		B4EA32FF2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32FE2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift */; };
+		B4EA33012BB9BB1900BC3ECA /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */; };
+		B4EA33032BB9BB3100BC3ECA /* UILabel+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */; };
+		B4EA33062BB9C29E00BC3ECA /* ScreenshotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -104,6 +107,9 @@
 		B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCaseImpl.swift; sourceTree = "<group>"; };
 		B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSection.swift; sourceTree = "<group>"; };
 		B4EA32FE2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompletedTableViewCell.swift; sourceTree = "<group>"; };
+		B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
+		B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ex.swift"; sourceTree = "<group>"; };
+		B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotImageView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -317,6 +323,7 @@
 			children = (
 				B4EA32EC2BB960A900BC3ECA /* Protocol */,
 				B4EA32C22BB8042E00BC3ECA /* BaseView */,
+				B4EA33042BB9C29000BC3ECA /* Components */,
 				B4EA32C92BB8773000BC3ECA /* Extension */,
 			);
 			path = Common;
@@ -337,6 +344,8 @@
 			children = (
 				B4EA32CA2BB8773C00BC3ECA /* ReusableView+Ex.swift */,
 				B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */,
+				B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */,
+				B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -458,6 +467,14 @@
 				B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */,
 			);
 			path = Section;
+			sourceTree = "<group>";
+		};
+		B4EA33042BB9C29000BC3ECA /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -619,9 +636,12 @@
 				B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */,
 				B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */,
 				B4EA32C82BB876D500BC3ECA /* BaseTableViewCell.swift in Sources */,
+				B4EA33012BB9BB1900BC3ECA /* UIImageView+Ex.swift in Sources */,
+				B4EA33062BB9C29E00BC3ECA /* ScreenshotImageView.swift in Sources */,
 				B4EA32CB2BB8773C00BC3ECA /* ReusableView+Ex.swift in Sources */,
 				B4EA32E92BB947A600BC3ECA /* SearchRquest.swift in Sources */,
 				B4EA32C42BB8043600BC3ECA /* BaseViewController.swift in Sources */,
+				B4EA33032BB9BB3100BC3ECA /* UILabel+Ex.swift in Sources */,
 				B4EA32F72BB9654900BC3ECA /* SearchUseCase.swift in Sources */,
 				B4EA32B62BB7E93000BC3ECA /* TabBarItem.swift in Sources */,
 				B4EA32D92BB8803C00BC3ECA /* SearchingStateTableViewCell.swift in Sources */,

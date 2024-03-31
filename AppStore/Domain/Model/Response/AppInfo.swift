@@ -11,9 +11,7 @@ struct AppInfo: Codable {
     let artistId: Int?
     let artistName: String?
     let artistViewUrl: String?
-    let artworkUrl60: String?
     let artworkUrl512: String?
-    let artworkUrl100: String?
     let sellerName: String?
     let sellerUrl: String?
     let trackId: Int?
@@ -23,10 +21,9 @@ struct AppInfo: Codable {
     let trackContentRating: String?
     let description: String?
     let contentAdvisoryRating: String?
+    let averageUserRating: Double?
     let userRatingCount: Int?
-    let userRatingCountForCurrentVersion: Int?
     let screenshotUrls: [String]?
-    let supportedDevices: [String]?
     let version: String?
     let minimumOsVersion: String?
     let currentVersionReleaseDate: String?

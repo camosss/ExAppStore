@@ -54,11 +54,14 @@ final class SearchViewModel: ViewModelType {
             .asSignal()
             .emit(onNext: { [weak self] index in
                 guard let self = self else { return }
-                output.isEditingSearchBar.accept(false)
 
-                let appInfo = output.appInfos.value[index]
-                if let trackName = appInfo.trackName {
-                    self.useCase.requestSearch(term: trackName)
+                if output.isEditingSearchBar.value {
+                    output.isEditingSearchBar.accept(false)
+
+                    let appInfo = output.appInfos.value[index]
+                    if let trackName = appInfo.trackName {
+                        self.useCase.requestSearch(term: trackName)
+                    }
                 }
             })
             .disposed(by: disposeBag)
