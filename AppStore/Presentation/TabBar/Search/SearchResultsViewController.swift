@@ -36,9 +36,14 @@ final class SearchResultsViewController: BaseViewController {
     override func setConfigurations() {
         super.setConfigurations()
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.keyboardDismissMode = .onDrag
         tableView.register(
-            SearchResultsTableViewCell.self,
-            forCellReuseIdentifier: SearchResultsTableViewCell.reuseIdentifier
+            SearchingStateTableViewCell.self,
+            forCellReuseIdentifier: SearchingStateTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            SearchCompletedTableViewCell.self,
+            forCellReuseIdentifier: SearchCompletedTableViewCell.reuseIdentifier
         )
     }
 }

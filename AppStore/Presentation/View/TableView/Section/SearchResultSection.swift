@@ -8,13 +8,19 @@
 import Foundation
 import RxDataSources
 
+enum SearchResultViewType: Int {
+    case searchingState
+    case searchCompleted
+}
+
 typealias AppInfoItems = [AppInfo]
 
 struct SearchResultSection {
 
-    typealias SearchResultSectionModel = SectionModel<Int, AppInfoItems>
+    typealias SearchResultSectionModel = SectionModel<SearchResultViewType, AppInfoItems>
 
     enum AppInfoItems: Equatable {
-        case firstItem(AppInfo)
+        case searchingState(AppInfo)
+        case searchCompleted(AppInfo)
     }
 }

@@ -26,10 +26,16 @@ final class SearchViewController: BaseViewController {
     private let disposeBag = DisposeBag()
 
     private lazy var input = SearchViewModel.Input(
-        searchBarTerm: searchController.searchBar.rx.text.orEmpty
+        searchBarTerm: searchController.searchBar
+            .rx.text.orEmpty
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
-            .asSignal(onErrorJustReturn: "")
+            .asSignal(onErrorJustReturn: ""),
+        searchItemDidTap: resultsViewController.tableView
+            .rx.itemSelected
+            .map{ $0.row }.asSignal(onErrorJustReturn: -1),
+        shouldLoadResult: searchController.searchBar
+            .rx.searchButtonClicked.asSignal()
     )
     private lazy var output = viewModel.transform(input: input)
 
@@ -37,11 +43,18 @@ final class SearchViewController: BaseViewController {
         SearchResultSection.SearchResultSectionModel
     >(configureCell: { dataSource, tableView, indexPath, item in
         switch item {
-        case .firstItem(let appInfo):
+        case .searchingState(let appInfo):
             let cell = tableView.dequeueReusableCell(
-                withIdentifier: SearchResultsTableViewCell.reuseIdentifier
-            ) as! SearchResultsTableViewCell
+                withIdentifier: SearchingStateTableViewCell.reuseIdentifier
+            ) as! SearchingStateTableViewCell
             cell.bind(appInfo.trackName)
+            return cell
+
+        case .searchCompleted(let appInfo):
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: SearchCompletedTableViewCell.reuseIdentifier
+            ) as! SearchCompletedTableViewCell
+            cell.bind(appInfo)
             return cell
         }
     })
@@ -110,15 +123,20 @@ final class SearchViewController: BaseViewController {
 // MARK: - Bind
 extension SearchViewController {
     private func bind() {
-        output.appInfos
+        output.sections
             .asDriver()
-            .map { value in
-                return [SearchResultSection.SearchResultSectionModel(
-                    model: 0,
-                    items: value.map { SearchResultSection.AppInfoItems.firstItem($0) }
-                )]
-            }
             .drive(resultsViewController.tableView.rx.items(dataSource: dataSource))
+            .disposed(by: disposeBag)
+
+        output.isEditingSearchBar
+            .asDriver()
+            .drive(onNext: { [weak self] isEditing in
+                guard let self = self,
+                      !isEditing
+                else { return }
+
+                self.searchController.searchBar.resignFirstResponder()
+            })
             .disposed(by: disposeBag)
     }
 }

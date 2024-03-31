@@ -1,5 +1,5 @@
 //
-//  SearchResultsTableViewCell.swift
+//  SearchingStateTableViewCell.swift
 //  AppStore
 //
 //  Created by 강호성 on 3/31/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchResultsTableViewCell: BaseTableViewCell<String> {
+final class SearchingStateTableViewCell: BaseTableViewCell<String> {
 
     // MARK: - Properties
 
