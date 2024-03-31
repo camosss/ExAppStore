@@ -6,18 +6,48 @@
 //
 
 import UIKit
+
 import SnapKit
+import RxCocoa
+import RxSwift
 
 final class SearchViewController: BaseViewController {
 
     // MARK: - Properties
 
+    let resultsViewController = SearchResultsViewController()
+    lazy var searchController = UISearchController(
+        searchResultsController: resultsViewController
+    )
     private let tableView = UITableView()
+
+    private let viewModel: SearchViewModel
+    private let disposeBag = DisposeBag()
+
+    private lazy var input = SearchViewModel.Input(
+        searchBarTerm: searchController.searchBar.rx.text.orEmpty
+            .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
+            .distinctUntilChanged()
+            .asSignal(onErrorJustReturn: "")
+    )
+    private lazy var output = viewModel.transform(input: input)
+
+    // MARK: - Init
+
+    init(viewModel: SearchViewModel) {
+        self.viewModel = viewModel
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("InvestViewController fatal error")
+    }
 
     // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bind()
     }
 
     // MARK: - Helpers
@@ -43,13 +73,7 @@ final class SearchViewController: BaseViewController {
     }
 
     private func setSearchController() {
-        let resultsViewController = SearchResultsViewController()
-        let searchController = UISearchController(
-            searchResultsController: resultsViewController
-        )
-
         searchController.searchBar.placeholder = "게임, 앱, 스토리 등"
-        searchController.searchResultsUpdater = self
         navigationItem.searchController = searchController
         navigationItem.hidesSearchBarWhenScrolling = false
     }
@@ -69,11 +93,13 @@ final class SearchViewController: BaseViewController {
     }
 }
 
-// MARK: - UISearchResultsUpdating
-extension SearchViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        guard let text = searchController.searchBar.text else { return }
-        dump(text)
+// MARK: - Bind
+extension SearchViewController {
+    private func bind() {
+        output.appInfos
+            .asDriver()
+            .drive()
+            .disposed(by: disposeBag)
     }
 }
 

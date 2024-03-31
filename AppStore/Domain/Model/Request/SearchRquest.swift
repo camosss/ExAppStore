@@ -15,7 +15,7 @@ struct SearchRquest {
 
     init(
         term: String,
-        country: String,
+        country: String = "KR",
         media: String? = "software",
         limit: Int? = 10
     ) {
@@ -30,11 +30,11 @@ struct SearchRquest {
             "term": term,
             "country": country
         ]
-        if let limit = limit {
-            dictionary["limit"] = limit
-        }
         if let media = media {
             dictionary["media"] = media
+        }
+        if let limit = limit {
+            dictionary["limit"] = limit
         }
         return dictionary
     }

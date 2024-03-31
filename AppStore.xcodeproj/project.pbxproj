@@ -41,6 +41,9 @@
 		B4EA32EB2BB95F7B00BC3ECA /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */; };
 		B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */; };
 		B4EA32F22BB9610200BC3ECA /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */; };
+		B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */; };
+		B4EA32F72BB9654900BC3ECA /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */; };
+		B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -94,6 +97,9 @@
 		B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
+		B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
+		B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCaseImpl.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -210,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32E32BB9447E00BC3ECA /* Model */,
+				B4EA32F52BB9653A00BC3ECA /* UseCase */,
 				B4EA32E02BB934DB00BC3ECA /* Interface */,
 			);
 			path = Domain;
@@ -286,6 +293,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32BC2BB800BD00BC3ECA /* Coordinator */,
+				B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */,
 				B4EA32BF2BB8010200BC3ECA /* SearchViewController.swift */,
 				B4EA32C52BB875CF00BC3ECA /* SearchResultsViewController.swift */,
 			);
@@ -417,6 +425,23 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */,
+			);
+			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B4EA32F52BB9653A00BC3ECA /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32F82BB965C400BC3ECA /* Protocol */,
+				B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		B4EA32F82BB965C400BC3ECA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */,
 			);
 			path = Protocol;
 			sourceTree = "<group>";
@@ -578,14 +603,17 @@
 				B4EA32AF2BB7E78300BC3ECA /* TabBarCoordinator.swift in Sources */,
 				B4EA32D02BB87B2200BC3ECA /* RecentSearchTableViewCell.swift in Sources */,
 				B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */,
+				B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */,
 				B4EA32C82BB876D500BC3ECA /* BaseTableViewCell.swift in Sources */,
 				B4EA32CB2BB8773C00BC3ECA /* ReusableView+Ex.swift in Sources */,
 				B4EA32E92BB947A600BC3ECA /* SearchRquest.swift in Sources */,
 				B4EA32C42BB8043600BC3ECA /* BaseViewController.swift in Sources */,
+				B4EA32F72BB9654900BC3ECA /* SearchUseCase.swift in Sources */,
 				B4EA32B62BB7E93000BC3ECA /* TabBarItem.swift in Sources */,
 				B4EA32D92BB8803C00BC3ECA /* SearchResultsTableViewCell.swift in Sources */,
 				B4EA32A92BB7E3D700BC3ECA /* Coordinator.swift in Sources */,
 				B4EA32DF2BB934CF00BC3ECA /* SearchRepository.swift in Sources */,
+				B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */,
 				B4EA32BE2BB800C600BC3ECA /* SearchCoordinator.swift in Sources */,
 				B4EA32C62BB875CF00BC3ECA /* SearchResultsViewController.swift in Sources */,
 				B4EA32E22BB934E500BC3ECA /* SearchRepositoryType.swift in Sources */,
