@@ -50,6 +50,7 @@
 		B4EA33032BB9BB3100BC3ECA /* UILabel+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */; };
 		B4EA33062BB9C29E00BC3ECA /* ScreenshotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */; };
 		B4EA33082BB9CC8100BC3ECA /* Int+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */; };
+		B4EA33102BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA330F2BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,6 +113,7 @@
 		B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ex.swift"; sourceTree = "<group>"; };
 		B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotImageView.swift; sourceTree = "<group>"; };
 		B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ex.swift"; sourceTree = "<group>"; };
+		B4EA330F2BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -281,6 +283,7 @@
 			children = (
 				B4EA32AD2BB7E77900BC3ECA /* Coordinator */,
 				B4EA32BB2BB800A500BC3ECA /* Search */,
+				B4EA330B2BB9CF1600BC3ECA /* DetailAppInfo */,
 			);
 			path = TabBar;
 			sourceTree = "<group>";
@@ -496,6 +499,14 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
+		B4EA330B2BB9CF1600BC3ECA /* DetailAppInfo */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA330F2BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift */,
+			);
+			path = DetailAppInfo;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -647,6 +658,7 @@
 				B4EA32EB2BB95F7B00BC3ECA /* AppInfo.swift in Sources */,
 				B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */,
 				B4EA32D32BB87C8100BC3ECA /* RecentSearchHeaderView.swift in Sources */,
+				B4EA33102BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift in Sources */,
 				B4EA32C02BB8010200BC3ECA /* SearchViewController.swift in Sources */,
 				B4EA33082BB9CC8100BC3ECA /* Int+Ex.swift in Sources */,
 				B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */,

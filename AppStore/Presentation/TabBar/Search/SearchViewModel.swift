@@ -24,12 +24,17 @@ final class SearchViewModel: ViewModelType {
         let appInfos = BehaviorRelay<[AppInfo]>(value: [])
     }
 
+    private weak var coordinator: SearchCoordinator?
     private let useCase: SearchUseCase
     var disposeBag = DisposeBag()
 
     // MARK: - Init
 
-    init(useCase: SearchUseCase) {
+    init(
+        coordinator: SearchCoordinator?,
+        useCase: SearchUseCase
+    ) {
+        self.coordinator = coordinator
         self.useCase = useCase
     }
 
@@ -55,14 +60,20 @@ final class SearchViewModel: ViewModelType {
             .emit(onNext: { [weak self] index in
                 guard let self = self else { return }
 
+                let appInfo = output.appInfos.value[index]
+
                 if output.isEditingSearchBar.value {
                     output.isEditingSearchBar.accept(false)
 
-                    let appInfo = output.appInfos.value[index]
                     if let trackName = appInfo.trackName {
                         output.currentTerm.accept(trackName)
                         self.useCase.requestSearch(term: trackName)
                     }
+
+                } else {
+                    self.coordinator?.showDetailAppInfoViewController(
+                        appInfo: appInfo
+                    )
                 }
             })
             .disposed(by: disposeBag)
