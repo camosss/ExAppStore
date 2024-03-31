@@ -40,6 +40,7 @@
 		B4EA32E92BB947A600BC3ECA /* SearchRquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32E82BB947A600BC3ECA /* SearchRquest.swift */; };
 		B4EA32EB2BB95F7B00BC3ECA /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */; };
 		B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */; };
+		B4EA32F22BB9610200BC3ECA /* UIViewController+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		B4EA32E82BB947A600BC3ECA /* SearchRquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRquest.swift; sourceTree = "<group>"; };
 		B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
 		B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
+		B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ex.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -322,6 +324,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32CA2BB8773C00BC3ECA /* ReusableView+Ex.swift */,
+				B4EA32F12BB9610200BC3ECA /* UIViewController+Ex.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -563,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EA32DC2BB9312800BC3ECA /* SearchTarget.swift in Sources */,
+				B4EA32F22BB9610200BC3ECA /* UIViewController+Ex.swift in Sources */,
 				B4EA32AB2BB7E62F00BC3ECA /* AppCoordinator.swift in Sources */,
 				B4EA32E52BB9449000BC3ECA /* SearchResults.swift in Sources */,
 				B4EA32EB2BB95F7B00BC3ECA /* AppInfo.swift in Sources */,
