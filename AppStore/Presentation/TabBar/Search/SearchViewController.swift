@@ -8,6 +8,7 @@
 import UIKit
 
 import SnapKit
+import RxDataSources
 import RxCocoa
 import RxSwift
 
@@ -15,8 +16,8 @@ final class SearchViewController: BaseViewController {
 
     // MARK: - Properties
 
-    let resultsViewController = SearchResultsViewController()
-    lazy var searchController = UISearchController(
+    private let resultsViewController = SearchResultsViewController()
+    private lazy var searchController = UISearchController(
         searchResultsController: resultsViewController
     )
     private let tableView = UITableView()
@@ -31,6 +32,19 @@ final class SearchViewController: BaseViewController {
             .asSignal(onErrorJustReturn: "")
     )
     private lazy var output = viewModel.transform(input: input)
+
+    private lazy var dataSource = RxTableViewSectionedReloadDataSource<
+        SearchResultSection.SearchResultSectionModel
+    >(configureCell: { dataSource, tableView, indexPath, item in
+        switch item {
+        case .firstItem(let appInfo):
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: SearchResultsTableViewCell.reuseIdentifier
+            ) as! SearchResultsTableViewCell
+            cell.bind(appInfo.trackName)
+            return cell
+        }
+    })
 
     // MARK: - Init
 
@@ -98,7 +112,13 @@ extension SearchViewController {
     private func bind() {
         output.appInfos
             .asDriver()
-            .drive()
+            .map { value in
+                return [SearchResultSection.SearchResultSectionModel(
+                    model: 0,
+                    items: value.map { SearchResultSection.AppInfoItems.firstItem($0) }
+                )]
+            }
+            .drive(resultsViewController.tableView.rx.items(dataSource: dataSource))
             .disposed(by: disposeBag)
     }
 }

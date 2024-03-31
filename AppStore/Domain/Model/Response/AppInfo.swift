@@ -41,3 +41,9 @@ struct AppInfo: Codable {
     let languageCodesISO2A: [String]?
     let formattedPrice: String?
 }
+
+extension AppInfo: Equatable {
+    static func == (lhs: AppInfo, rhs: AppInfo) -> Bool {
+        return lhs.trackId == rhs.trackId
+    }
+}

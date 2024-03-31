@@ -44,6 +44,7 @@
 		B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */; };
 		B4EA32F72BB9654900BC3ECA /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */; };
 		B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */; };
+		B4EA32FD2BB96A7100BC3ECA /* SearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
 		B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCaseImpl.swift; sourceTree = "<group>"; };
+		B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +350,7 @@
 		B4EA32CD2BB87B1700BC3ECA /* TableView */ = {
 			isa = PBXGroup;
 			children = (
+				B4EA32FB2BB96A4F00BC3ECA /* Section */,
 				B4EA32D12BB87C6B00BC3ECA /* HeaderFooterView */,
 				B4EA32CE2BB87B1D00BC3ECA /* Cell */,
 			);
@@ -444,6 +447,14 @@
 				B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */,
 			);
 			path = Protocol;
+			sourceTree = "<group>";
+		};
+		B4EA32FB2BB96A4F00BC3ECA /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */,
+			);
+			path = Section;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -616,6 +627,7 @@
 				B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */,
 				B4EA32BE2BB800C600BC3ECA /* SearchCoordinator.swift in Sources */,
 				B4EA32C62BB875CF00BC3ECA /* SearchResultsViewController.swift in Sources */,
+				B4EA32FD2BB96A7100BC3ECA /* SearchResultSection.swift in Sources */,
 				B4EA32E22BB934E500BC3ECA /* SearchRepositoryType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

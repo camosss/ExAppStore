@@ -30,7 +30,7 @@ final class SearchResultsTableViewCell: BaseTableViewCell<String> {
             make.size.equalTo(16)
         }
         searchResultsLabel.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview().inset(8)
+            make.top.bottom.equalToSuperview().inset(12)
             make.leading.equalTo(iconImageView.snp.trailing).offset(8)
             make.trailing.equalToSuperview().inset(20)
         }
