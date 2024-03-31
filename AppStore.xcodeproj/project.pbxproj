@@ -39,6 +39,7 @@
 		B4EA32E52BB9449000BC3ECA /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32E42BB9449000BC3ECA /* SearchResults.swift */; };
 		B4EA32E92BB947A600BC3ECA /* SearchRquest.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32E82BB947A600BC3ECA /* SearchRquest.swift */; };
 		B4EA32EB2BB95F7B00BC3ECA /* AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */; };
+		B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +91,7 @@
 		B4EA32E42BB9449000BC3ECA /* SearchResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 		B4EA32E82BB947A600BC3ECA /* SearchRquest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRquest.swift; sourceTree = "<group>"; };
 		B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppInfo.swift; sourceTree = "<group>"; };
+		B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -299,6 +301,7 @@
 		B4EA32C12BB8042800BC3ECA /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				B4EA32EC2BB960A900BC3ECA /* Protocol */,
 				B4EA32C22BB8042E00BC3ECA /* BaseView */,
 				B4EA32C92BB8773000BC3ECA /* Extension */,
 			);
@@ -405,6 +408,14 @@
 				B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */,
 			);
 			path = Response;
+			sourceTree = "<group>";
+		};
+		B4EA32EC2BB960A900BC3ECA /* Protocol */ = {
+			isa = PBXGroup;
+			children = (
+				B4EA32ED2BB960B000BC3ECA /* ViewModelType.swift */,
+			);
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -562,6 +573,7 @@
 				B4EA32D52BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift in Sources */,
 				B4EA32AF2BB7E78300BC3ECA /* TabBarCoordinator.swift in Sources */,
 				B4EA32D02BB87B2200BC3ECA /* RecentSearchTableViewCell.swift in Sources */,
+				B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */,
 				B4EA32C82BB876D500BC3ECA /* BaseTableViewCell.swift in Sources */,
 				B4EA32CB2BB8773C00BC3ECA /* ReusableView+Ex.swift in Sources */,
 				B4EA32E92BB947A600BC3ECA /* SearchRquest.swift in Sources */,
