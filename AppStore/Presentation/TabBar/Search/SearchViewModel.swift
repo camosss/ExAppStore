@@ -19,14 +19,13 @@ final class SearchViewModel: ViewModelType {
     }
     struct Output {
         let isEditingSearchBar = BehaviorRelay<Bool>(value: false)
+        let currentTerm = BehaviorRelay<String>(value: "")
         let sections = BehaviorRelay<[SearchResultSection.SearchResultSectionModel]>(value: [])
         let appInfos = BehaviorRelay<[AppInfo]>(value: [])
     }
 
     private let useCase: SearchUseCase
     var disposeBag = DisposeBag()
-
-    private var currentTerm: String = ""
 
     // MARK: - Init
 
@@ -43,9 +42,10 @@ final class SearchViewModel: ViewModelType {
             .asSignal()
             .emit(onNext: { [weak self] term in
                 guard let self = self else { return }
-                self.currentTerm = term
 
                 output.isEditingSearchBar.accept(true)
+                output.currentTerm.accept(term)
+
                 self.useCase.requestSearch(term: term)
             })
             .disposed(by: disposeBag)
@@ -60,6 +60,7 @@ final class SearchViewModel: ViewModelType {
 
                     let appInfo = output.appInfos.value[index]
                     if let trackName = appInfo.trackName {
+                        output.currentTerm.accept(trackName)
                         self.useCase.requestSearch(term: trackName)
                     }
                 }
@@ -72,7 +73,7 @@ final class SearchViewModel: ViewModelType {
                 guard let self = self else { return }
 
                 output.isEditingSearchBar.accept(false)
-                self.useCase.requestSearch(term: self.currentTerm)
+                self.useCase.requestSearch(term: output.currentTerm.value)
             })
             .disposed(by: disposeBag)
 

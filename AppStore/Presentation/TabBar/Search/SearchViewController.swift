@@ -138,6 +138,15 @@ extension SearchViewController {
                 self.searchController.searchBar.resignFirstResponder()
             })
             .disposed(by: disposeBag)
+
+        output.currentTerm
+            .asDriver()
+            .filter({ !$0.isEmpty })
+            .drive(onNext: { [weak self] term in
+                guard let self = self else { return }
+                self.searchController.searchBar.text = term
+            })
+            .disposed(by: disposeBag)
     }
 }
 
