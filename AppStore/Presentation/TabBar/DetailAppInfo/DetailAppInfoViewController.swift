@@ -7,31 +7,19 @@
 
 import UIKit
 
-import RxDataSources
-import RxCocoa
-import RxSwift
+enum DetailAppInfoViewType: Int, CaseIterable {
+    case main
+    case description
+    case screenshot
+}
 
 final class DetailAppInfoViewController: BaseViewController {
 
     // MARK: - Properties
 
-    private let appInfo: AppInfo
+    private var appInfo: AppInfo
 
     private let tableView = UITableView()
-
-    private let disposeBag = DisposeBag()
-
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<
-        DetailAppInfoSection.DetailAppInfoSectionModel
-    >(configureCell: { dataSource, tableView, indexPath, item in
-        switch item {
-        case .screenshot(let appInfo):
-            return UITableViewCell()
-
-        case .description(let appInfo):
-            return UITableViewCell()
-        }
-    })
 
     // MARK: - Init
     
@@ -70,23 +58,69 @@ final class DetailAppInfoViewController: BaseViewController {
     }
 
     private func setTableView() {
-        tableView.rx.setDelegate(self).disposed(by: disposeBag)
+        tableView.dataSource = self
+        tableView.backgroundColor = .systemBackground
         tableView.rowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .none
         tableView.register(
-            DetailAppInfoHeaderView.self,
-            forHeaderFooterViewReuseIdentifier: DetailAppInfoHeaderView.reuseIdentifier
+            DetailAppInfoMainTableViewCell.self,
+            forCellReuseIdentifier: DetailAppInfoMainTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            DetailAppInfoDescriptionTableViewCell.self,
+            forCellReuseIdentifier: DetailAppInfoDescriptionTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            DetailAppInfoScreenshotListTableViewCell.self,
+            forCellReuseIdentifier: DetailAppInfoScreenshotListTableViewCell.reuseIdentifier
         )
     }
 }
 
-// MARK: - UITableViewDelegate
-extension DetailAppInfoViewController: UITableViewDelegate {
+// MARK: - UITableViewDataSource
+extension DetailAppInfoViewController: UITableViewDataSource {
+    func numberOfSections(
+        in tableView: UITableView
+    ) -> Int {
+        return DetailAppInfoViewType.allCases.count
+    }
+    
     func tableView(
         _ tableView: UITableView,
-        viewForHeaderInSection section: Int
-    ) -> UIView? {
-        let headerView = DetailAppInfoHeaderView()
-        headerView.bind(appInfo)
-        return headerView
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        return 1
+    }
+    
+    func tableView(
+        _ tableView: UITableView,
+        cellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell {
+        guard let sectionType = DetailAppInfoViewType(rawValue: indexPath.section) else {
+            return UITableViewCell()
+        }
+
+        switch sectionType {
+        case .main:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailAppInfoMainTableViewCell.reuseIdentifier
+            ) as! DetailAppInfoMainTableViewCell
+            cell.bind(appInfo)
+            return cell
+
+        case .description:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailAppInfoDescriptionTableViewCell.reuseIdentifier
+            ) as! DetailAppInfoDescriptionTableViewCell
+            cell.bind(appInfo)
+            return cell
+
+        case .screenshot:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailAppInfoScreenshotListTableViewCell.reuseIdentifier
+            ) as! DetailAppInfoScreenshotListTableViewCell
+            cell.bind(appInfo.screenshotUrls)
+            return cell
+        }
     }
 }

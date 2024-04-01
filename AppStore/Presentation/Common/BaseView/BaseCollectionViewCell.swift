@@ -1,13 +1,13 @@
 //
-//  BaseTableViewCell.swift
+//  BaseCollectionViewCell.swift
 //  AppStore
 //
-//  Created by 강호성 on 3/31/24.
+//  Created by 강호성 on 4/1/24.
 //
 
-import UIKit.UITableViewCell
+import UIKit.UICollectionViewCell
 
-class BaseTableViewCell<T>: UITableViewCell {
+class BaseCollectionViewCell<T>: UICollectionViewCell {
 
     var model: T? {
         didSet {
@@ -17,23 +17,21 @@ class BaseTableViewCell<T>: UITableViewCell {
         }
     }
 
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setViews()
         setConstraints()
         setConfigurations()
     }
 
-    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     func setViews() {}
     func setConstraints() {}
-    func setConfigurations() {
-        selectionStyle = .none
-    }
+    func setConfigurations() {}
 
     func bind(_ model: T?) {}
 }
+

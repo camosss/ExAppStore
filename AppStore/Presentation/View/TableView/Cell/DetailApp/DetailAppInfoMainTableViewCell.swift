@@ -1,5 +1,5 @@
 //
-//  DetailAppInfoHeaderView.swift
+//  DetailAppInfoMainTableViewCell.swift
 //  AppStore
 //
 //  Created by 강호성 on 4/1/24.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class DetailAppInfoHeaderView: BaseTableViewHeaderFooterView<AppInfo> {
+final class DetailAppInfoMainTableViewCell: BaseTableViewCell<AppInfo> {
 
     // MARK: - Properties
 
@@ -70,7 +70,7 @@ final class DetailAppInfoHeaderView: BaseTableViewHeaderFooterView<AppInfo> {
         containerView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).offset(16)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().inset(16)
         }
         iconImageView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
@@ -89,10 +89,6 @@ final class DetailAppInfoHeaderView: BaseTableViewHeaderFooterView<AppInfo> {
         }
     }
 
-    override func setConfigurations() {
-        super.setConfigurations()
-    }
-
     override func bind(_ model: AppInfo?) {
         super.bind(model)
         if let iconImage = model?.artworkUrl512 {
@@ -106,4 +102,3 @@ final class DetailAppInfoHeaderView: BaseTableViewHeaderFooterView<AppInfo> {
         }
     }
 }
-

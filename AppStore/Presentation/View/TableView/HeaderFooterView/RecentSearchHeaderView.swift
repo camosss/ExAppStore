@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RecentSearchHeaderView: BaseTableViewHeaderFooterView<Any> {
+final class RecentSearchHeaderView: BaseTableViewHeaderFooterView {
 
     // MARK: - Properties
 

@@ -5,17 +5,9 @@
 //  Created by 강호성 on 3/31/24.
 //
 
-import UIKit
+import UIKit.UITableViewHeaderFooterView
 
-class BaseTableViewHeaderFooterView<T>: UITableViewHeaderFooterView {
-
-    var model: T? {
-        didSet {
-            if let model = model {
-                bind(model)
-            }
-        }
-    }
+class BaseTableViewHeaderFooterView: UITableViewHeaderFooterView {
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -31,6 +23,4 @@ class BaseTableViewHeaderFooterView<T>: UITableViewHeaderFooterView {
     func setViews() {}
     func setConstraints() {}
     func setConfigurations() {}
-
-    func bind(_ model: T?) {}
 }

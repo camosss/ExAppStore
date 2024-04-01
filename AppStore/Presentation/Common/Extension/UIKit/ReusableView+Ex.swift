@@ -23,3 +23,8 @@ extension UITableViewCell: ReusableView {
     }
 }
 
+extension UICollectionViewCell: ReusableView {
+    static var reuseIdentifier: String {
+        return String(describing: self)
+    }
+}
