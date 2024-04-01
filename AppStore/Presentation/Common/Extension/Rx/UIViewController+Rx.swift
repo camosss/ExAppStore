@@ -1,5 +1,5 @@
 //
-//  UIViewController+Ex.swift
+//  UIViewController+Rx.swift
 //  AppStore
 //
 //  Created by 강호성 on 3/31/24.
