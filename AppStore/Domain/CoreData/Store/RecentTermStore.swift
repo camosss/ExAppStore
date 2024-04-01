@@ -8,15 +8,16 @@
 import Foundation
 import CoreData
 
-public protocol RecentTermModelStore {
-    var id: Int32 { get }
+protocol RecentTermModelStore {
+    var id: String { get }
     var term: String { get }
 }
 
-public protocol RecentTermStore {
-    func add(id: Int32, term: String)
-    func remove(id: Int32, term: String)
+protocol RecentTermStore {
+    func add(id: String, term: String)
+    func getRecentTerms() -> [RecentTermModel]
+    func remove(id: String, term: String)
     func removeAll()
-    func count() -> Int?
     func removeLast()
+    func count() -> Int?
 }

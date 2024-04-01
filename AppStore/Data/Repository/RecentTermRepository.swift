@@ -9,10 +9,10 @@ import Foundation
 import CoreData
 
 final class RecentTermModel: RecentTermModelStore {
-    var id: Int32 = -1
+    var id: String = ""
     var term: String = ""
 
-    init(id: Int32, term: String) {
+    init(id: String, term: String) {
         self.id = id
         self.term = term
     }
@@ -37,7 +37,7 @@ final class RecentTermRepository: RecentTermStore {
 
     // MARK: - Helpers
 
-    func add(id: Int32, term: String) {
+    func add(id: String, term: String) {
         let context = coreDataStack.taskContext()
 
         if let count = count(), count == maxCount {
@@ -55,23 +55,23 @@ final class RecentTermRepository: RecentTermStore {
             do {
                 try context.save()
             } catch {
-                print("add recentTerm error: \(error)")
+                print("add RecentTerm error: \(error)")
             }
         }
     }
 
     func getRecentTerms() -> [RecentTermModel] {
         return fetchAll().map {
-            return RecentTermModel(id: $0.id, term: $0.term ?? "")
+            return RecentTermModel(id: $0.id ?? "", term: $0.term ?? "")
         }
     }
 
-    func remove(id: Int32, term: String) {
+    func remove(id: String, term: String) {
         let context = coreDataStack.taskContext()
 
         let fetchRequest: NSFetchRequest<RecentTerm> = RecentTerm.fetchRequest()
         fetchRequest.predicate = NSPredicate(
-            format: "(id == %@) OR (term == %@)",
+            format: "(id.length > 0 AND id == %@) OR (term == %@)",
             argumentArray: [id, term]
         )
 
@@ -102,11 +102,10 @@ final class RecentTermRepository: RecentTermStore {
 
     func removeLast() {
         guard let removeTarget = fetchAll().last,
-              let term = removeTarget.term else {
-            return
-        }
+              let id = removeTarget.id,
+              let term = removeTarget.term
+        else { return }
 
-        let id = removeTarget.id
         remove(id: id, term: term)
     }
 
@@ -124,7 +123,7 @@ final class RecentTermRepository: RecentTermStore {
     }
 
     fileprivate func create(
-        _ id: Int32,
+        _ id: String,
         _ term: String,
         in context: NSManagedObjectContext
     ) {
@@ -135,14 +134,14 @@ final class RecentTermRepository: RecentTermStore {
     }
 
     fileprivate func fetch(
-        _ id: Int32,
+        _ id: String,
         _ term: String,
         in context: NSManagedObjectContext
     ) -> RecentTerm? {
 
         let fetchRequest: NSFetchRequest<RecentTerm> = RecentTerm.fetchRequest()
         fetchRequest.predicate = NSPredicate(
-            format: "(id == %@) OR (term == %@)",
+            format: "(id.length > 0 AND id == %@) OR (term == %@)",
             argumentArray: [id, term]
         )
 

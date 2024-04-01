@@ -23,7 +23,8 @@ final class SearchCoordinator: Coordinator {
             viewModel: SearchViewModel(
                 coordinator: self,
                 useCase: SearchUseCaseImpl(
-                    searchRepository: SearchRepository()
+                    searchRepository: SearchRepository(), 
+                    recentTermRepository: RecentTermRepository()
                 )
             )
         )

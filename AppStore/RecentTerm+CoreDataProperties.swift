@@ -16,7 +16,7 @@ extension RecentTerm {
         return NSFetchRequest<RecentTerm>(entityName: "RecentTerm")
     }
 
-    @NSManaged public var id: Int32
+    @NSManaged public var id: String?
     @NSManaged public var term: String?
     @NSManaged public var createdAt: Date?
 

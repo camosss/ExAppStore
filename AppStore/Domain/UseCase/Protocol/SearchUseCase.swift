@@ -14,4 +14,6 @@ protocol SearchUseCase: AnyObject {
     var failError: PublishRelay<Error> { get set }
 
     func requestSearch(term: String)
+    func getRecentTerms() -> [RecentTermModel]
+    func addRecentTerm(id: String, term: String)
 }

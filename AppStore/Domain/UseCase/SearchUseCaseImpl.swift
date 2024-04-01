@@ -11,12 +11,17 @@ import RxCocoa
 final class SearchUseCaseImpl: SearchUseCase {
 
     private let searchRepository: SearchRepositoryType
+    private let recentTermRepository: RecentTermStore
 
     var searchResults = PublishRelay<SearchResults>()
     var failError = PublishRelay<Error>()
 
-    init(searchRepository: SearchRepositoryType) {
+    init(
+        searchRepository: SearchRepositoryType,
+        recentTermRepository: RecentTermStore
+    ) {
         self.searchRepository = searchRepository
+        self.recentTermRepository = recentTermRepository
     }
 }
 
@@ -35,5 +40,14 @@ extension SearchUseCaseImpl {
                 self.failError.accept(error)
             }
         }
+    }
+
+    func getRecentTerms() -> [RecentTermModel] {
+        let recentTerms = recentTermRepository.getRecentTerms()
+        return recentTerms
+    }
+
+    func addRecentTerm(id: String, term: String) {
+        recentTermRepository.add(id: id, term: term)
     }
 }

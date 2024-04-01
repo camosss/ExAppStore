@@ -13,6 +13,7 @@ import RxSwift
 final class SearchViewModel: ViewModelType {
 
     struct Input {
+        let viewDidLoad: Observable<Void>
         let searchBarTerm: Signal<String>
         let searchItemDidTap: Signal<Int>
         let shouldLoadResult: Signal<Void>
@@ -22,6 +23,7 @@ final class SearchViewModel: ViewModelType {
         let currentTerm = BehaviorRelay<String>(value: "")
         let sections = BehaviorRelay<[SearchResultSection.SearchResultSectionModel]>(value: [])
         let appInfos = BehaviorRelay<[AppInfo]>(value: [])
+        let recentTerms = BehaviorRelay<[RecentTermModel]>(value: [])
     }
 
     private weak var coordinator: SearchCoordinator?
@@ -43,8 +45,16 @@ final class SearchViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let output = Output()
 
+        input.viewDidLoad
+            .subscribe(onNext: { [weak self] _ in
+                guard let self = self else { return }
+
+                let recentTerms = self.useCase.getRecentTerms()
+                output.recentTerms.accept(recentTerms)
+            })
+            .disposed(by: disposeBag)
+
         input.searchBarTerm
-            .asSignal()
             .emit(onNext: { [weak self] term in
                 guard let self = self else { return }
 
@@ -56,11 +66,20 @@ final class SearchViewModel: ViewModelType {
             .disposed(by: disposeBag)
 
         input.searchItemDidTap
-            .asSignal()
             .emit(onNext: { [weak self] index in
                 guard let self = self else { return }
 
                 let appInfo = output.appInfos.value[index]
+                
+                if let trackId = appInfo.trackId,
+                   let term = appInfo.trackName {
+                    let id = String(trackId)
+
+                    self.useCase.addRecentTerm(id: id, term: term)
+
+                    let recentTerms = self.useCase.getRecentTerms()
+                    output.recentTerms.accept(recentTerms)
+                }
 
                 if output.isEditingSearchBar.value {
                     output.isEditingSearchBar.accept(false)
@@ -79,7 +98,6 @@ final class SearchViewModel: ViewModelType {
             .disposed(by: disposeBag)
 
         input.shouldLoadResult
-            .asSignal()
             .emit(onNext: { [weak self] _ in
                 guard let self = self else { return }
 

@@ -26,6 +26,7 @@ final class SearchViewController: BaseViewController {
     private let disposeBag = DisposeBag()
 
     private lazy var input = SearchViewModel.Input(
+        viewDidLoad: Observable.just(()),
         searchBarTerm: searchController.searchBar
             .rx.text.orEmpty
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
@@ -123,6 +124,14 @@ final class SearchViewController: BaseViewController {
 // MARK: - Bind
 extension SearchViewController {
     private func bind() {
+        output.recentTerms
+            .asDriver()
+            .drive(onNext: { [weak self] recentTerms in
+                guard let self = self else { return }
+                self.tableView.reloadData()
+            })
+            .disposed(by: disposeBag)
+
         output.sections
             .asDriver()
             .drive(resultsViewController.tableView.rx.items(dataSource: dataSource))
@@ -156,7 +165,7 @@ extension SearchViewController: UITableViewDataSource {
         _ tableView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return 10
+        return output.recentTerms.value.count
     }
     
     func tableView(
@@ -167,7 +176,8 @@ extension SearchViewController: UITableViewDataSource {
             withIdentifier: RecentSearchTableViewCell.reuseIdentifier,
             for: indexPath
         ) as! RecentSearchTableViewCell
-        cell.bind("최근 검색어")
+        let recentTerm = output.recentTerms.value[indexPath.row].term
+        cell.bind(recentTerm)
         return cell
     }
 }

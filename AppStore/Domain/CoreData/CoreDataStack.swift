@@ -31,7 +31,7 @@ final class CoreDataStack {
     let storeType: StoreType
 
     lazy var persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "RecentTerm")
+        let container = NSPersistentContainer(name: "DataModel")
 
         if self.storeType == .inMemory {
             let description = NSPersistentStoreDescription()
