@@ -19,6 +19,8 @@
 		B4AAE0FE2BBB182300F0D721 /* RecentTermStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0FD2BBB182300F0D721 /* RecentTermStore.swift */; };
 		B4AAE1002BBB187400F0D721 /* RecentTermRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0FF2BBB187400F0D721 /* RecentTermRepository.swift */; };
 		B4AAE1042BBB235800F0D721 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0F22BBB176800F0D721 /* DataModel.xcdatamodeld */; };
+		B4AAE1062BBB281A00F0D721 /* RecentTermModelSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE1052BBB281A00F0D721 /* RecentTermModelSection.swift */; };
+		B4AAE1082BBB287700F0D721 /* RecentTermModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE1072BBB287700F0D721 /* RecentTermModel.swift */; };
 		B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */; };
 		B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */; };
 		B4EA32692BB7D74600BC3ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EA32682BB7D74600BC3ECA /* Assets.xcassets */; };
@@ -94,6 +96,8 @@
 		B4AAE0F92BBB17CE00F0D721 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		B4AAE0FD2BBB182300F0D721 /* RecentTermStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermStore.swift; sourceTree = "<group>"; };
 		B4AAE0FF2BBB187400F0D721 /* RecentTermRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermRepository.swift; sourceTree = "<group>"; };
+		B4AAE1052BBB281A00F0D721 /* RecentTermModelSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermModelSection.swift; sourceTree = "<group>"; };
+		B4AAE1072BBB287700F0D721 /* RecentTermModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermModel.swift; sourceTree = "<group>"; };
 		B4EA325C2BB7D74500BC3ECA /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -524,6 +528,7 @@
 			children = (
 				B4EA32E42BB9449000BC3ECA /* SearchResults.swift */,
 				B4EA32EA2BB95F7B00BC3ECA /* AppInfo.swift */,
+				B4AAE1072BBB287700F0D721 /* RecentTermModel.swift */,
 			);
 			path = Response;
 			sourceTree = "<group>";
@@ -557,6 +562,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */,
+				B4AAE1052BBB281A00F0D721 /* RecentTermModelSection.swift */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -741,6 +747,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EA32DC2BB9312800BC3ECA /* SearchTarget.swift in Sources */,
+				B4AAE1082BBB287700F0D721 /* RecentTermModel.swift in Sources */,
 				B4AAE0E42BBB13F600F0D721 /* SearchCoordinator.swift in Sources */,
 				B4EA32F22BB9610200BC3ECA /* UIViewController+Ex.swift in Sources */,
 				B4AAE0CE2BBAFC6500F0D721 /* DetailAppInfoMainTableViewCell.swift in Sources */,
@@ -780,6 +787,7 @@
 				B4EA32DF2BB934CF00BC3ECA /* SearchRepository.swift in Sources */,
 				B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */,
 				B4AAE0FE2BBB182300F0D721 /* RecentTermStore.swift in Sources */,
+				B4AAE1062BBB281A00F0D721 /* RecentTermModelSection.swift in Sources */,
 				B4EA32FF2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift in Sources */,
 				B4AAE0D62BBB0DF800F0D721 /* ScreenshotListCollectionViewCell.swift in Sources */,
 				B4EA32C62BB875CF00BC3ECA /* SearchResultsViewController.swift in Sources */,

@@ -40,7 +40,21 @@ final class SearchViewController: BaseViewController {
     )
     private lazy var output = viewModel.transform(input: input)
 
-    private lazy var dataSource = RxTableViewSectionedReloadDataSource<
+    private lazy var recentTermDataSource = RxTableViewSectionedReloadDataSource<
+        RecentTermModelSection.RecentTermModelSectionModel
+    >(configureCell: { dataSource, tableView, indexPath, item in
+        switch item {
+        case .firstItem(let recentTermModel):
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: RecentSearchTableViewCell.reuseIdentifier,
+                for: indexPath
+            ) as! RecentSearchTableViewCell
+            cell.bind(recentTermModel.term)
+            return cell
+        }
+    })
+
+    private lazy var searchDataSource = RxTableViewSectionedReloadDataSource<
         SearchResultSection.SearchResultSectionModel
     >(configureCell: { dataSource, tableView, indexPath, item in
         switch item {
@@ -107,7 +121,6 @@ final class SearchViewController: BaseViewController {
     }
 
     private func setTableView() {
-        tableView.dataSource = self
         tableView.delegate = self
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(
@@ -126,15 +139,18 @@ extension SearchViewController {
     private func bind() {
         output.recentTerms
             .asDriver()
-            .drive(onNext: { [weak self] recentTerms in
-                guard let self = self else { return }
-                self.tableView.reloadData()
-            })
+            .map { value in
+                return [RecentTermModelSection.RecentTermModelSectionModel(
+                    model: 0,
+                    items: value.map { .firstItem($0) }
+                )]
+            }
+            .drive(tableView.rx.items(dataSource: recentTermDataSource))
             .disposed(by: disposeBag)
 
         output.sections
             .asDriver()
-            .drive(resultsViewController.tableView.rx.items(dataSource: dataSource))
+            .drive(resultsViewController.tableView.rx.items(dataSource: searchDataSource))
             .disposed(by: disposeBag)
 
         output.isEditingSearchBar
@@ -156,29 +172,6 @@ extension SearchViewController {
                 self.searchController.searchBar.text = term
             })
             .disposed(by: disposeBag)
-    }
-}
-
-// MARK: - UITableViewDataSource
-extension SearchViewController: UITableViewDataSource {
-    func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
-        return output.recentTerms.value.count
-    }
-    
-    func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(
-            withIdentifier: RecentSearchTableViewCell.reuseIdentifier,
-            for: indexPath
-        ) as! RecentSearchTableViewCell
-        let recentTerm = output.recentTerms.value[indexPath.row].term
-        cell.bind(recentTerm)
-        return cell
     }
 }
 

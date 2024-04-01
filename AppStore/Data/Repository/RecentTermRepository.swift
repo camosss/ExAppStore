@@ -8,16 +8,6 @@
 import Foundation
 import CoreData
 
-final class RecentTermModel: RecentTermModelStore {
-    var id: String = ""
-    var term: String = ""
-
-    init(id: String, term: String) {
-        self.id = id
-        self.term = term
-    }
-}
-
 final class RecentTermRepository: RecentTermStore {
 
     // MARK: - Properties
