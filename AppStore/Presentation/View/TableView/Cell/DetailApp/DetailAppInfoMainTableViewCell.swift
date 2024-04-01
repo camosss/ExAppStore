@@ -57,12 +57,18 @@ final class DetailAppInfoMainTableViewCell: BaseTableViewCell<AppInfo> {
         button.layer.cornerRadius = 12
         return button
     }()
+    private let dividerView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .systemGray6
+        return view
+    }()
 
     // MARK: - Helpers
 
     override func setViews() {
         super.setViews()
         addSubview(containerView)
+        addSubview(dividerView)
     }
 
     override func setConstraints() {
@@ -70,7 +76,6 @@ final class DetailAppInfoMainTableViewCell: BaseTableViewCell<AppInfo> {
         containerView.snp.makeConstraints { make in
             make.top.equalTo(self.safeAreaLayoutGuide).offset(16)
             make.leading.trailing.equalToSuperview().inset(24)
-            make.bottom.equalToSuperview().inset(16)
         }
         iconImageView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
@@ -86,6 +91,12 @@ final class DetailAppInfoMainTableViewCell: BaseTableViewCell<AppInfo> {
             make.bottom.equalToSuperview()
             make.width.equalTo(62)
             make.height.equalTo(24)
+        }
+        dividerView.snp.makeConstraints { make in
+            make.top.equalTo(containerView.snp.bottom).offset(16)
+            make.leading.equalTo(24)
+            make.trailing.bottom.equalToSuperview()
+            make.height.equalTo(1)
         }
     }
 

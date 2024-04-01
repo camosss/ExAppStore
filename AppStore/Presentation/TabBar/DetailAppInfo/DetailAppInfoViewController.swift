@@ -22,12 +22,12 @@ final class DetailAppInfoViewController: BaseViewController {
     private let tableView = UITableView()
 
     // MARK: - Init
-    
+
     init(appInfo: AppInfo) {
         self.appInfo = appInfo
         super.init(nibName: nil, bundle: nil)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -112,6 +112,7 @@ extension DetailAppInfoViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: DetailAppInfoDescriptionTableViewCell.reuseIdentifier
             ) as! DetailAppInfoDescriptionTableViewCell
+            cell.delegate = self
             cell.bind(appInfo)
             return cell
 
@@ -122,5 +123,12 @@ extension DetailAppInfoViewController: UITableViewDataSource {
             cell.bind(appInfo.screenshotUrls)
             return cell
         }
+    }
+}
+
+// MARK: - DetailAppInfoDescriptionTableViewCellDelegate
+extension DetailAppInfoViewController: DetailAppInfoDescriptionTableViewCellDelegate {
+    func moreButtonDidTap() {
+        tableView.reloadData()
     }
 }
