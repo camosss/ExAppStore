@@ -13,6 +13,12 @@
 		B4AAE0D02BBAFCDE00F0D721 /* DetailAppInfoScreenshotListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0CF2BBAFCDE00F0D721 /* DetailAppInfoScreenshotListTableViewCell.swift */; };
 		B4AAE0D62BBB0DF800F0D721 /* ScreenshotListCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0D52BBB0DF800F0D721 /* ScreenshotListCollectionViewCell.swift */; };
 		B4AAE0E42BBB13F600F0D721 /* SearchCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0E32BBB13F600F0D721 /* SearchCoordinator.swift */; };
+		B4AAE0F42BBB176800F0D721 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0F22BBB176800F0D721 /* DataModel.xcdatamodeld */; };
+		B4AAE0F72BBB17B000F0D721 /* RecentTerm+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0F52BBB17B000F0D721 /* RecentTerm+CoreDataClass.swift */; };
+		B4AAE0F82BBB17B000F0D721 /* RecentTerm+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0F62BBB17B000F0D721 /* RecentTerm+CoreDataProperties.swift */; };
+		B4AAE0FA2BBB17CE00F0D721 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0F92BBB17CE00F0D721 /* CoreDataStack.swift */; };
+		B4AAE0FE2BBB182300F0D721 /* RecentTermStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0FD2BBB182300F0D721 /* RecentTermStore.swift */; };
+		B4AAE1002BBB187400F0D721 /* RecentTermRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0FF2BBB187400F0D721 /* RecentTermRepository.swift */; };
 		B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */; };
 		B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */; };
 		B4EA32692BB7D74600BC3ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EA32682BB7D74600BC3ECA /* Assets.xcassets */; };
@@ -82,6 +88,12 @@
 		B4AAE0CF2BBAFCDE00F0D721 /* DetailAppInfoScreenshotListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoScreenshotListTableViewCell.swift; sourceTree = "<group>"; };
 		B4AAE0D52BBB0DF800F0D721 /* ScreenshotListCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotListCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4AAE0E32BBB13F600F0D721 /* SearchCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCoordinator.swift; sourceTree = "<group>"; };
+		B4AAE0F32BBB176800F0D721 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		B4AAE0F52BBB17B000F0D721 /* RecentTerm+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentTerm+CoreDataClass.swift"; path = "AppStore/RecentTerm+CoreDataClass.swift"; sourceTree = "<group>"; };
+		B4AAE0F62BBB17B000F0D721 /* RecentTerm+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "RecentTerm+CoreDataProperties.swift"; path = "AppStore/RecentTerm+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		B4AAE0F92BBB17CE00F0D721 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		B4AAE0FD2BBB182300F0D721 /* RecentTermStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermStore.swift; sourceTree = "<group>"; };
+		B4AAE0FF2BBB187400F0D721 /* RecentTermRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermRepository.swift; sourceTree = "<group>"; };
 		B4EA325C2BB7D74500BC3ECA /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -200,9 +212,36 @@
 			path = Coordinator;
 			sourceTree = "<group>";
 		};
+		B4AAE0F12BBB175900F0D721 /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				B4AAE0F22BBB176800F0D721 /* DataModel.xcdatamodeld */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
+		B4AAE0FB2BBB180100F0D721 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				B4AAE0F92BBB17CE00F0D721 /* CoreDataStack.swift */,
+				B4AAE0FC2BBB181800F0D721 /* Store */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		B4AAE0FC2BBB181800F0D721 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				B4AAE0FD2BBB182300F0D721 /* RecentTermStore.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
 		B4EA32532BB7D74500BC3ECA = {
 			isa = PBXGroup;
 			children = (
+				B4AAE0F52BBB17B000F0D721 /* RecentTerm+CoreDataClass.swift */,
+				B4AAE0F62BBB17B000F0D721 /* RecentTerm+CoreDataProperties.swift */,
 				B4EA325E2BB7D74500BC3ECA /* AppStore */,
 				B4EA32752BB7D74600BC3ECA /* AppStoreTests */,
 				B4EA327F2BB7D74600BC3ECA /* AppStoreUITests */,
@@ -286,6 +325,7 @@
 				B4EA32E32BB9447E00BC3ECA /* Model */,
 				B4EA32F52BB9653A00BC3ECA /* UseCase */,
 				B4EA32E02BB934DB00BC3ECA /* Interface */,
+				B4AAE0FB2BBB180100F0D721 /* CoreData */,
 			);
 			path = Domain;
 			sourceTree = "<group>";
@@ -301,6 +341,7 @@
 		B4EA32A42BB7E0E800BC3ECA /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				B4AAE0F12BBB175900F0D721 /* DataBase */,
 				B4EA32DA2BB9311D00BC3ECA /* Network */,
 			);
 			path = Infrastructure;
@@ -448,6 +489,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32DE2BB934CF00BC3ECA /* SearchRepository.swift */,
+				B4AAE0FF2BBB187400F0D721 /* RecentTermRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -699,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B4EA32DC2BB9312800BC3ECA /* SearchTarget.swift in Sources */,
+				B4AAE0F42BBB176800F0D721 /* DataModel.xcdatamodeld in Sources */,
 				B4AAE0E42BBB13F600F0D721 /* SearchCoordinator.swift in Sources */,
 				B4EA32F22BB9610200BC3ECA /* UIViewController+Ex.swift in Sources */,
 				B4AAE0CE2BBAFC6500F0D721 /* DetailAppInfoMainTableViewCell.swift in Sources */,
@@ -712,6 +755,9 @@
 				B4EA33082BB9CC8100BC3ECA /* Int+Ex.swift in Sources */,
 				B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */,
 				B4EA32D52BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift in Sources */,
+				B4AAE0F72BBB17B000F0D721 /* RecentTerm+CoreDataClass.swift in Sources */,
+				B4AAE1002BBB187400F0D721 /* RecentTermRepository.swift in Sources */,
+				B4AAE0F82BBB17B000F0D721 /* RecentTerm+CoreDataProperties.swift in Sources */,
 				B4EA32AF2BB7E78300BC3ECA /* TabBarCoordinator.swift in Sources */,
 				B4EA32D02BB87B2200BC3ECA /* RecentSearchTableViewCell.swift in Sources */,
 				B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */,
@@ -725,6 +771,7 @@
 				B4EA32C42BB8043600BC3ECA /* BaseViewController.swift in Sources */,
 				B4EA33032BB9BB3100BC3ECA /* UILabel+Ex.swift in Sources */,
 				B4AAE0CC2BBAFAB100F0D721 /* DetailAppInfoDescriptionTableViewCell.swift in Sources */,
+				B4AAE0FA2BBB17CE00F0D721 /* CoreDataStack.swift in Sources */,
 				B4EA32F72BB9654900BC3ECA /* SearchUseCase.swift in Sources */,
 				B4EA32B62BB7E93000BC3ECA /* TabBarItem.swift in Sources */,
 				B4EA32D92BB8803C00BC3ECA /* SearchingStateTableViewCell.swift in Sources */,
@@ -732,6 +779,7 @@
 				B4EA32A92BB7E3D700BC3ECA /* Coordinator.swift in Sources */,
 				B4EA32DF2BB934CF00BC3ECA /* SearchRepository.swift in Sources */,
 				B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */,
+				B4AAE0FE2BBB182300F0D721 /* RecentTermStore.swift in Sources */,
 				B4EA32FF2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift in Sources */,
 				B4AAE0D62BBB0DF800F0D721 /* ScreenshotListCollectionViewCell.swift in Sources */,
 				B4EA32C62BB875CF00BC3ECA /* SearchResultsViewController.swift in Sources */,
@@ -1148,6 +1196,20 @@
 			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
+
+/* Begin XCVersionGroup section */
+		B4AAE0F22BBB176800F0D721 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				B4AAE0F32BBB176800F0D721 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = B4AAE0F32BBB176800F0D721 /* DataModel.xcdatamodel */;
+			name = DataModel.xcdatamodeld;
+			path = /Users/camosss/Desktop/AppStore/AppStore/Infrastructure/DataBase/DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = B4EA32542BB7D74500BC3ECA /* Project object */;
 }
