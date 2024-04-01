@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4AAE0C22BBAD4A200F0D721 /* DetailAppInfoHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0C12BBAD4A200F0D721 /* DetailAppInfoHeaderView.swift */; };
 		B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */; };
 		B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */; };
 		B4EA32692BB7D74600BC3ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EA32682BB7D74600BC3ECA /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		B4EA33062BB9C29E00BC3ECA /* ScreenshotImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */; };
 		B4EA33082BB9CC8100BC3ECA /* Int+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */; };
 		B4EA33102BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA330F2BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift */; };
+		B4EA33122BB9DA1900BC3ECA /* DetailAppInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33112BB9DA1900BC3ECA /* DetailAppInfoSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,6 +73,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4AAE0C12BBAD4A200F0D721 /* DetailAppInfoHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoHeaderView.swift; sourceTree = "<group>"; };
 		B4EA325C2BB7D74500BC3ECA /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -114,6 +117,7 @@
 		B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotImageView.swift; sourceTree = "<group>"; };
 		B4EA33072BB9CC8100BC3ECA /* Int+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Ex.swift"; sourceTree = "<group>"; };
 		B4EA330F2BB9CFAD00BC3ECA /* DetailAppInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoViewController.swift; sourceTree = "<group>"; };
+		B4EA33112BB9DA1900BC3ECA /* DetailAppInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -385,6 +389,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32D22BB87C8100BC3ECA /* RecentSearchHeaderView.swift */,
+				B4AAE0C12BBAD4A200F0D721 /* DetailAppInfoHeaderView.swift */,
 			);
 			path = HeaderFooterView;
 			sourceTree = "<group>";
@@ -468,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */,
+				B4EA33112BB9DA1900BC3ECA /* DetailAppInfoSection.swift */,
 			);
 			path = Section;
 			sourceTree = "<group>";
@@ -651,9 +657,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4AAE0C22BBAD4A200F0D721 /* DetailAppInfoHeaderView.swift in Sources */,
 				B4EA32DC2BB9312800BC3ECA /* SearchTarget.swift in Sources */,
 				B4EA32F22BB9610200BC3ECA /* UIViewController+Ex.swift in Sources */,
 				B4EA32AB2BB7E62F00BC3ECA /* AppCoordinator.swift in Sources */,
+				B4EA33122BB9DA1900BC3ECA /* DetailAppInfoSection.swift in Sources */,
 				B4EA32E52BB9449000BC3ECA /* SearchResults.swift in Sources */,
 				B4EA32EB2BB95F7B00BC3ECA /* AppInfo.swift in Sources */,
 				B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */,

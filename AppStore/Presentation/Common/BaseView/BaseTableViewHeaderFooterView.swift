@@ -7,7 +7,15 @@
 
 import UIKit
 
-class BaseTableViewHeaderFooterView: UITableViewHeaderFooterView {
+class BaseTableViewHeaderFooterView<T>: UITableViewHeaderFooterView {
+
+    var model: T? {
+        didSet {
+            if let model = model {
+                bind(model)
+            }
+        }
+    }
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -23,4 +31,6 @@ class BaseTableViewHeaderFooterView: UITableViewHeaderFooterView {
     func setViews() {}
     func setConstraints() {}
     func setConfigurations() {}
+
+    func bind(_ model: T?) {}
 }
