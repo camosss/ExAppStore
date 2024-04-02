@@ -124,9 +124,18 @@ final class SearchViewModel: ViewModelType {
         input.shouldLoadResult
             .emit(onNext: { [weak self] _ in
                 guard let self = self else { return }
-
                 output.isEditingSearchBar.accept(false)
-                self.useCase.requestSearch(term: output.currentTerm.value)
+
+                let currentTerm = output.currentTerm.value
+                self.useCase.requestSearch(term: currentTerm)
+
+                self.useCase.addRecentTerm(
+                    id: UUID().uuidString,
+                    term: currentTerm
+                )
+
+                let recentTerms = self.useCase.getRecentTerms()
+                output.recentTerms.accept(recentTerms)
             })
             .disposed(by: disposeBag)
 
