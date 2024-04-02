@@ -16,12 +16,14 @@ final class MockSearchUseCase: SearchUseCase {
     var searchResults = PublishRelay<SearchResults>()
     var failError = PublishRelay<Error>()
 
+    var mockRecentTerms: [RecentTermModel] = []
+
     func requestSearch(term: String) {
 
     }
 
     func getRecentTerms() -> [RecentTermModel] {
-        return []
+        return mockRecentTerms
     }
 
     func addRecentTerm(id: String, term: String) {
