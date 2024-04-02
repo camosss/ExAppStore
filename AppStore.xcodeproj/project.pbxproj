@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B4379F892BBC464600E42C1A /* RecentTermTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4379F882BBC464600E42C1A /* RecentTermTests.swift */; };
+		B4379F8B2BBC46D500E42C1A /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = B4379F8A2BBC46D500E42C1A /* RxTest */; };
 		B4AAE0C62BBAD87A00F0D721 /* BaseCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0C52BBAD87A00F0D721 /* BaseCollectionViewCell.swift */; };
 		B4AAE0CC2BBAFAB100F0D721 /* DetailAppInfoDescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0CB2BBAFAB100F0D721 /* DetailAppInfoDescriptionTableViewCell.swift */; };
 		B4AAE0CE2BBAFC6500F0D721 /* DetailAppInfoMainTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE0CD2BBAFC6500F0D721 /* DetailAppInfoMainTableViewCell.swift */; };
@@ -89,6 +91,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B4379F882BBC464600E42C1A /* RecentTermTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTermTests.swift; sourceTree = "<group>"; };
 		B4AAE0C52BBAD87A00F0D721 /* BaseCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCollectionViewCell.swift; sourceTree = "<group>"; };
 		B4AAE0CB2BBAFAB100F0D721 /* DetailAppInfoDescriptionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoDescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		B4AAE0CD2BBAFC6500F0D721 /* DetailAppInfoMainTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAppInfoMainTableViewCell.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4379F8B2BBC46D500E42C1A /* RxTest in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,6 +186,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B4379F8C2BBC47EF00E42C1A /* SearchTests */ = {
+			isa = PBXGroup;
+			children = (
+				B4379F882BBC464600E42C1A /* RecentTermTests.swift */,
+			);
+			path = SearchTests;
+			sourceTree = "<group>";
+		};
 		B4AAE0D12BBAFD3C00F0D721 /* Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -309,6 +321,7 @@
 		B4EA32752BB7D74600BC3ECA /* AppStoreTests */ = {
 			isa = PBXGroup;
 			children = (
+				B4379F8C2BBC47EF00E42C1A /* SearchTests */,
 			);
 			path = AppStoreTests;
 			sourceTree = "<group>";
@@ -674,6 +687,9 @@
 				B4EA32742BB7D74600BC3ECA /* PBXTargetDependency */,
 			);
 			name = AppStoreTests;
+			packageProductDependencies = (
+				B4379F8A2BBC46D500E42C1A /* RxTest */,
+			);
 			productName = AppStoreTests;
 			productReference = B4EA32722BB7D74600BC3ECA /* AppStoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
@@ -711,6 +727,7 @@
 					};
 					B4EA32712BB7D74600BC3ECA = {
 						CreatedOnToolsVersion = 15.3;
+						LastSwiftMigration = 1530;
 						TestTargetID = B4EA325B2BB7D74500BC3ECA;
 					};
 					B4EA327B2BB7D74600BC3ECA = {
@@ -837,6 +854,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B4379F892BBC464600E42C1A /* RecentTermTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1058,6 +1076,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7MS89TXQ5T;
@@ -1067,6 +1086,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = camosss.AppStoreTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AppStore.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/AppStore";
@@ -1078,6 +1098,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 7MS89TXQ5T;
@@ -1214,6 +1235,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		B4379F8A2BBC46D500E42C1A /* RxTest */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = B4EA32902BB7DA7E00BC3ECA /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxTest;
+		};
 		B4EA32932BB7DAF300BC3ECA /* Moya */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = B4EA32922BB7DAF300BC3ECA /* XCRemoteSwiftPackageReference "Moya" */;
