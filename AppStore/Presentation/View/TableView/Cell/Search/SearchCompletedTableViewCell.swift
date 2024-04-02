@@ -56,7 +56,8 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
     private lazy var rateInfoContainerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
             starRatingView,
-            ratingCountLabel
+            ratingCountLabel,
+            emptyView
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.axis = .horizontal
@@ -73,6 +74,11 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         label.textColor = .systemGray
         label.font = UIFont.systemFont(ofSize: 10)
         return label
+    }()
+    private let emptyView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .clear
+        return view
     }()
 
     private lazy var buttonContainerView: UIView = {
@@ -166,9 +172,11 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         }
         if let averageUserRating = model?.averageUserRating {
             starRatingView.setupStarFills(averageUserRating)
+            starRatingView.isHidden = (averageUserRating == 0)
         }
         if let userRatingCount = model?.userRatingCount {
             ratingCountLabel.text = userRatingCount.formattedString
+            ratingCountLabel.isHidden = (userRatingCount == 0)
         }
 
         if let screenshotUrls = model?.screenshotUrls {
