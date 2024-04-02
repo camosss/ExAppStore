@@ -20,16 +20,22 @@ final class SearchViewModel: ViewModelType {
         let shouldLoadResult: Signal<Void>
     }
     struct Output {
-        let isEditingSearchBar = BehaviorRelay<Bool>(value: false)
-        let currentTerm = BehaviorRelay<String>(value: "")
-        let sections = BehaviorRelay<[SearchResultSection.SearchResultSectionModel]>(value: [])
-        let appInfos = BehaviorRelay<[AppInfo]>(value: [])
-        let recentTerms = BehaviorRelay<[RecentTermModel]>(value: [])
+        let isEditingSearchBar: Driver<Bool>
+        let currentTerm: Driver<String>
+        let sections: Driver<[SearchResultSection.SearchResultSectionModel]>
+        let appInfos: Driver<[AppInfo]>
+        let recentTerms: Driver<[RecentTermModel]>
     }
 
     private weak var coordinator: SearchCoordinator?
     private let useCase: SearchUseCase
     var disposeBag = DisposeBag()
+
+    private let isEditingSearchBar = BehaviorRelay<Bool>(value: false)
+    private let currentTerm = BehaviorRelay<String>(value: "")
+    private let sections = BehaviorRelay<[SearchResultSection.SearchResultSectionModel]>(value: [])
+    private let appInfos = BehaviorRelay<[AppInfo]>(value: [])
+    private let recentTerms = BehaviorRelay<[RecentTermModel]>(value: [])
 
     // MARK: - Init
 
@@ -44,25 +50,23 @@ final class SearchViewModel: ViewModelType {
     // MARK: - Transform
 
     func transform(input: Input) -> Output {
-        let output = Output()
-
         input.viewDidLoad
             .subscribe(onNext: { [weak self] _ in
                 guard let self = self else { return }
 
                 let recentTerms = self.useCase.getRecentTerms()
-                output.recentTerms.accept(recentTerms)
+                self.recentTerms.accept(recentTerms)
             })
             .disposed(by: disposeBag)
 
         input.searchBarTerm
             .emit(onNext: { [weak self] term in
                 guard let self = self,
-                      output.currentTerm.value != term
+                      self.currentTerm.value != term
                 else { return }
 
-                output.isEditingSearchBar.accept(true)
-                output.currentTerm.accept(term)
+                self.isEditingSearchBar.accept(true)
+                self.currentTerm.accept(term)
 
                 self.useCase.requestSearch(term: term)
             })
@@ -73,10 +77,10 @@ final class SearchViewModel: ViewModelType {
             .emit(onNext: { [weak self] index in
                 guard let self = self else { return }
 
-                let recentTerm = output.recentTerms.value[index]
-                output.currentTerm.accept(recentTerm.term)
+                let recentTerm = self.recentTerms.value[index]
+                self.currentTerm.accept(recentTerm.term)
 
-                output.isEditingSearchBar.accept(false)
+                self.isEditingSearchBar.accept(false)
                 self.useCase.requestSearch(term: recentTerm.term)
 
                 self.useCase.addRecentTerm(
@@ -85,7 +89,7 @@ final class SearchViewModel: ViewModelType {
                 )
 
                 let recentTerms = self.useCase.getRecentTerms()
-                output.recentTerms.accept(recentTerms)
+                self.recentTerms.accept(recentTerms)
             })
             .disposed(by: disposeBag)
 
@@ -93,8 +97,8 @@ final class SearchViewModel: ViewModelType {
             .emit(onNext: { [weak self] index in
                 guard let self = self else { return }
 
-                let appInfo = output.appInfos.value[index]
-                
+                let appInfo = self.appInfos.value[index]
+
                 if let trackId = appInfo.trackId,
                    let term = appInfo.trackName {
                     let id = String(trackId)
@@ -102,14 +106,14 @@ final class SearchViewModel: ViewModelType {
                     self.useCase.addRecentTerm(id: id, term: term)
 
                     let recentTerms = self.useCase.getRecentTerms()
-                    output.recentTerms.accept(recentTerms)
+                    self.recentTerms.accept(recentTerms)
                 }
 
-                if output.isEditingSearchBar.value {
-                    output.isEditingSearchBar.accept(false)
+                if self.isEditingSearchBar.value {
+                    self.isEditingSearchBar.accept(false)
 
                     if let trackName = appInfo.trackName {
-                        output.currentTerm.accept(trackName)
+                        self.currentTerm.accept(trackName)
                         self.useCase.requestSearch(term: trackName)
                     }
 
@@ -124,9 +128,10 @@ final class SearchViewModel: ViewModelType {
         input.shouldLoadResult
             .emit(onNext: { [weak self] _ in
                 guard let self = self else { return }
-                output.isEditingSearchBar.accept(false)
 
-                let currentTerm = output.currentTerm.value
+                self.isEditingSearchBar.accept(false)
+
+                let currentTerm = self.currentTerm.value
                 self.useCase.requestSearch(term: currentTerm)
 
                 self.useCase.addRecentTerm(
@@ -135,19 +140,20 @@ final class SearchViewModel: ViewModelType {
                 )
 
                 let recentTerms = self.useCase.getRecentTerms()
-                output.recentTerms.accept(recentTerms)
+                self.recentTerms.accept(recentTerms)
             })
             .disposed(by: disposeBag)
 
         useCase.searchResults
             .asSignal()
-            .emit(onNext: { searchResults in
+            .emit(onNext: { [weak self] searchResults in
+                guard let self = self else { return }
 
-                output.appInfos.accept(searchResults.results)
+                self.appInfos.accept(searchResults.results)
 
                 var section: [SearchResultSection.SearchResultSectionModel]
 
-                if output.isEditingSearchBar.value {
+                if self.isEditingSearchBar.value {
                     section = [.init(
                         model: .searchingState,
                         items: searchResults.results.map { .searchingState($0) }
@@ -160,10 +166,16 @@ final class SearchViewModel: ViewModelType {
                     )]
                 }
 
-                output.sections.accept(section)
+                self.sections.accept(section)
             })
             .disposed(by: disposeBag)
 
-        return output
+        return Output(
+            isEditingSearchBar: isEditingSearchBar.asDriver(),
+            currentTerm: currentTerm.asDriver(),
+            sections: sections.asDriver(),
+            appInfos: appInfos.asDriver(),
+            recentTerms: recentTerms.asDriver()
+        )
     }
 }

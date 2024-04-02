@@ -143,8 +143,9 @@ final class SearchViewController: BaseViewController {
 extension SearchViewController {
     private func bind() {
         output.recentTerms
+            .asDriver()
             .map { return $0.count <= 0 }
-            .bind(to: tableView.rx.isEmptyTableView(text: "최근 검색어가 없습니다."))
+            .drive(tableView.rx.isEmptyTableView(text: "최근 검색어가 없습니다."))
             .disposed(by: disposeBag)
 
         output.recentTerms
