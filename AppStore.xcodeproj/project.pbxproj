@@ -24,6 +24,9 @@
 		B4AAE10B2BBB2A6100F0D721 /* UITableView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE10A2BBB2A6100F0D721 /* UITableView+Rx.swift */; };
 		B4AAE10D2BBB2A7800F0D721 /* UITableView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE10C2BBB2A7800F0D721 /* UITableView+Ex.swift */; };
 		B4AAE10F2BBB2B4500F0D721 /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE10E2BBB2B4500F0D721 /* EmptyView.swift */; };
+		B4AAE1122BBBE2D400F0D721 /* StarRatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE1112BBBE2D400F0D721 /* StarRatingView.swift */; };
+		B4AAE1142BBBE7D300F0D721 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE1132BBBE7D300F0D721 /* BaseView.swift */; };
+		B4AAE1162BBC015400F0D721 /* UIImage+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AAE1152BBC015400F0D721 /* UIImage+Ex.swift */; };
 		B4EA32602BB7D74500BC3ECA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */; };
 		B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */; };
 		B4EA32692BB7D74600BC3ECA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4EA32682BB7D74600BC3ECA /* Assets.xcassets */; };
@@ -104,6 +107,9 @@
 		B4AAE10A2BBB2A6100F0D721 /* UITableView+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Rx.swift"; sourceTree = "<group>"; };
 		B4AAE10C2BBB2A7800F0D721 /* UITableView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Ex.swift"; sourceTree = "<group>"; };
 		B4AAE10E2BBB2B4500F0D721 /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		B4AAE1112BBBE2D400F0D721 /* StarRatingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarRatingView.swift; sourceTree = "<group>"; };
+		B4AAE1132BBBE7D300F0D721 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		B4AAE1152BBC015400F0D721 /* UIImage+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ex.swift"; sourceTree = "<group>"; };
 		B4EA325C2BB7D74500BC3ECA /* AppStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AppStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4EA325F2BB7D74500BC3ECA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4EA32612BB7D74500BC3ECA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -455,6 +461,7 @@
 				B4EA32C72BB876D500BC3ECA /* BaseTableViewCell.swift */,
 				B4EA32D42BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift */,
 				B4AAE0C52BBAD87A00F0D721 /* BaseCollectionViewCell.swift */,
+				B4AAE1132BBBE7D300F0D721 /* BaseView.swift */,
 			);
 			path = BaseView;
 			sourceTree = "<group>";
@@ -594,6 +601,7 @@
 		B4EA33042BB9C29000BC3ECA /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				B4AAE1112BBBE2D400F0D721 /* StarRatingView.swift */,
 				B4EA33052BB9C29E00BC3ECA /* ScreenshotImageView.swift */,
 				B4AAE10E2BBB2B4500F0D721 /* EmptyView.swift */,
 			);
@@ -607,6 +615,7 @@
 				B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */,
 				B4EA33022BB9BB3100BC3ECA /* UILabel+Ex.swift */,
 				B4AAE10C2BBB2A7800F0D721 /* UITableView+Ex.swift */,
+				B4AAE1152BBC015400F0D721 /* UIImage+Ex.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -788,6 +797,8 @@
 				B4EA32622BB7D74500BC3ECA /* SceneDelegate.swift in Sources */,
 				B4EA32D52BB87D7A00BC3ECA /* BaseTableViewHeaderFooterView.swift in Sources */,
 				B4AAE0F72BBB17B000F0D721 /* RecentTerm+CoreDataClass.swift in Sources */,
+				B4AAE1122BBBE2D400F0D721 /* StarRatingView.swift in Sources */,
+				B4AAE1162BBC015400F0D721 /* UIImage+Ex.swift in Sources */,
 				B4AAE1002BBB187400F0D721 /* RecentTermRepository.swift in Sources */,
 				B4AAE0F82BBB17B000F0D721 /* RecentTerm+CoreDataProperties.swift in Sources */,
 				B4EA32AF2BB7E78300BC3ECA /* TabBarCoordinator.swift in Sources */,
@@ -797,6 +808,7 @@
 				B4EA32FA2BB965D500BC3ECA /* DefaultSearchUseCase.swift in Sources */,
 				B4EA32C82BB876D500BC3ECA /* BaseTableViewCell.swift in Sources */,
 				B4AAE0D02BBAFCDE00F0D721 /* DetailAppInfoScreenshotListTableViewCell.swift in Sources */,
+				B4AAE1142BBBE7D300F0D721 /* BaseView.swift in Sources */,
 				B4EA33012BB9BB1900BC3ECA /* UIImageView+Ex.swift in Sources */,
 				B4EA33062BB9C29E00BC3ECA /* ScreenshotImageView.swift in Sources */,
 				B4EA32CB2BB8773C00BC3ECA /* ReusableView+Ex.swift in Sources */,

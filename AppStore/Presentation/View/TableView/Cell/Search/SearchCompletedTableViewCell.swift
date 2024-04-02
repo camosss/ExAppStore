@@ -55,7 +55,7 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
 
     private lazy var rateInfoContainerStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [
-            rateView,
+            starRatingView,
             ratingCountLabel
         ])
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -63,9 +63,8 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         stackView.spacing = 2
         return stackView
     }()
-    private let rateView: UIView = {
-        let view = UIView()
-        view.backgroundColor = .systemGray6
+    private let starRatingView: StarRatingView = {
+        let view = StarRatingView()
         view.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         return view
     }()
@@ -150,9 +149,6 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
             make.width.equalTo(62)
             make.height.equalTo(24)
         }
-        rateView.snp.makeConstraints { make in
-            make.width.equalTo(100)
-        }
     }
 
     override func bind(_ model: AppInfo?) {
@@ -167,11 +163,11 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         if let description = model?.description {
             descriptionLabel.setTextWithLineHeight(text: description, lineHeight: 14)
         }
+        if let averageUserRating = model?.averageUserRating {
+            starRatingView.setupStarFills(averageUserRating)
+        }
         if let userRatingCount = model?.userRatingCount {
-            ratingCountLabel.setTextWithLineHeight(
-                text: userRatingCount.formattedString,
-                lineHeight: 14
-            )
+            ratingCountLabel.text = userRatingCount.formattedString
         }
 
         if let screenshotUrls = model?.screenshotUrls {
