@@ -119,4 +119,38 @@ extension RecentTermTests {
              .next(10, expectedRecentTerms)]
         )
     }
+
+    func test_검색어_입력중_화면에서_키보드의_검색_버튼을_선택하면_최근_검색어_목록에_저장되는지() {
+
+        let expectedTerms = ["카카오뱅크", "카카"]
+
+        self.mockUseCase.mockRecentTerms = [RecentTermModel(id: "1", term: "카카오뱅크")]
+        self.viewModel = SearchViewModel(coordinator: nil, useCase: mockUseCase)
+
+        let searchBarTermObserver = self.scheduler.createColdObservable([.next(0, "카카")])
+        let shouldLoadResultObserver = self.scheduler.createColdObservable([.next(10, ())])
+
+        self.input = SearchViewModel.Input(
+            viewDidLoad: .never(),
+            searchBarTerm: searchBarTermObserver.asSignal(onErrorJustReturn: ""),
+            recentTermDidTap: .never(),
+            searchItemDidTap: .never(),
+            shouldLoadResult: shouldLoadResultObserver.asSignal(onErrorJustReturn: ())
+        )
+
+        let recentTermsObserver = self.scheduler.createObserver([String].self)
+
+        self.viewModel.transform(input: input)
+            .recentTerms
+            .map { $0.map { $0.term } }
+            .drive(recentTermsObserver)
+            .disposed(by: disposeBag)
+
+        self.scheduler.start()
+
+        XCTAssertEqual(
+            recentTermsObserver.events.map { $0.value.element! },
+            [[], expectedTerms]
+        )
+    }
 }
