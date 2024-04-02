@@ -96,19 +96,16 @@ final class SearchViewModel: ViewModelType {
 
                 let appInfo = self.appInfos.value[index]
 
-                if let trackId = appInfo.trackId,
-                   let term = appInfo.trackName {
-                    let id = String(trackId)
-
-                    self.addRecentTerm(id: id, term: term)
-                }
-
                 if self.isEditingSearchBar.value {
                     self.isEditingSearchBar.accept(false)
 
-                    if let trackName = appInfo.trackName {
-                        self.currentTerm.accept(trackName)
-                        self.useCase.requestSearch(term: trackName)
+                    if let trackId = appInfo.trackId,
+                       let term = appInfo.trackName {
+
+                        self.currentTerm.accept(term)
+                        self.useCase.requestSearch(term: term)
+
+                        self.addRecentTerm(id: String(trackId), term: term)
                     }
 
                 } else {
