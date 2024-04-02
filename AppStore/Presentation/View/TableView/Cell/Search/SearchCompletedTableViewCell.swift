@@ -132,6 +132,8 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         screenshotImageStackView.snp.makeConstraints { make in
             make.top.equalTo(containerView.snp.bottom).offset(12)
             make.leading.trailing.bottom.equalToSuperview().inset(24)
+
+            // FIXME: AutoLayout
             make.height.equalTo(200)
         }
         iconImageView.snp.makeConstraints { make in

@@ -49,30 +49,31 @@ final class DetailAppInfoDescriptionTableViewCell: BaseTableViewCell<AppInfo> {
 
     override func setViews() {
         super.setViews()
+        contentView.addSubview(dividerView)
         contentView.addSubview(containerView)
         containerView.addSubview(descriptionLabel)
         containerView.addSubview(moreButton)
-        contentView.addSubview(dividerView)
     }
 
     override func setConstraints() {
         super.setConstraints()
+        dividerView.snp.makeConstraints { make in
+            make.top.trailing.equalToSuperview()
+            make.leading.equalTo(24)
+            make.height.equalTo(1)
+        }
         containerView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.equalTo(dividerView.snp.bottom).offset(16)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         descriptionLabel.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview().inset(24)
+            make.top.equalToSuperview()
+            make.leading.trailing.equalToSuperview().inset(24)
         }
         moreButton.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom)
             make.trailing.equalToSuperview().inset(18)
             make.bottom.equalToSuperview()
-        }
-        dividerView.snp.makeConstraints { make in
-            make.top.equalTo(containerView.snp.bottom).offset(16)
-            make.leading.equalTo(24)
-            make.trailing.bottom.equalToSuperview()
-            make.height.equalTo(1)
         }
     }
 

@@ -13,16 +13,10 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
 
     private var screenshotUrls: [String] = []
 
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-
-        let collectionView = UICollectionView(
-            frame: .zero,
-            collectionViewLayout: layout
-        )
-        return collectionView
-    }()
+    private lazy var collectionView = UICollectionView(
+        frame: .zero,
+        collectionViewLayout: createCompositionalLayout()
+    )
 
     // MARK: - Helpers
 
@@ -35,6 +29,9 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
         super.setConstraints()
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+
+            // FIXME: AutoLayout
+            make.height.equalTo(430)
         }
     }
 
@@ -45,6 +42,7 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
 
     private func setCollectionView() {
         collectionView.dataSource = self
+        collectionView.isScrollEnabled = false
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset.bottom = 40
@@ -52,6 +50,30 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
             ScreenshotListCollectionViewCell.self,
             forCellWithReuseIdentifier: ScreenshotListCollectionViewCell.reuseIdentifier
         )
+    }
+
+    private func createCompositionalLayout() -> UICollectionViewLayout {
+        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+
+            let itemSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: itemSize)
+            item.contentInsets.trailing = 10
+
+            let groupSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.6),
+                heightDimension: .fractionalHeight(1.0)
+            )
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = .init(top: 16, leading: 24, bottom: 16, trailing: 24)
+            section.orthogonalScrollingBehavior = .groupPaging
+
+            return section
+        }
     }
 
     override func bind(_ model: [String]?) {
