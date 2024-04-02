@@ -17,9 +17,15 @@ final class MockSearchUseCase: SearchUseCase {
     var failError = PublishRelay<Error>()
 
     var mockRecentTerms: [RecentTermModel] = []
+    var mockAppInfos: [AppInfo] = []
 
     func requestSearch(term: String) {
-
+        searchResults.accept(
+            SearchResults(
+                resultCount: mockAppInfos.count,
+                results: mockAppInfos
+            )
+        )
     }
 
     func getRecentTerms() -> [RecentTermModel] {
@@ -27,6 +33,6 @@ final class MockSearchUseCase: SearchUseCase {
     }
 
     func addRecentTerm(id: String, term: String) {
-
+        mockRecentTerms.append(RecentTermModel(id: id, term: term))
     }
 }
