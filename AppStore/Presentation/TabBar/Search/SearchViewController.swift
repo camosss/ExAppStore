@@ -31,7 +31,10 @@ final class SearchViewController: BaseViewController {
             .rx.text.orEmpty
             .debounce(.milliseconds(300), scheduler: MainScheduler.instance)
             .distinctUntilChanged()
+            .filter { !$0.isEmpty }
             .asSignal(onErrorJustReturn: ""),
+        recentTermDidTap: tableView.rx.itemSelected
+            .map { $0.row }.asSignal(onErrorJustReturn: -1),
         searchItemDidTap: resultsViewController.tableView
             .rx.itemSelected
             .map{ $0.row }.asSignal(onErrorJustReturn: -1),
@@ -122,6 +125,7 @@ final class SearchViewController: BaseViewController {
 
     private func setTableView() {
         tableView.delegate = self
+        tableView.keyboardDismissMode = .onDrag
         tableView.backgroundColor = .systemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(
@@ -175,7 +179,9 @@ extension SearchViewController {
             .filter({ !$0.isEmpty })
             .drive(onNext: { [weak self] term in
                 guard let self = self else { return }
+
                 self.searchController.searchBar.text = term
+                self.searchController.isActive = true
             })
             .disposed(by: disposeBag)
     }

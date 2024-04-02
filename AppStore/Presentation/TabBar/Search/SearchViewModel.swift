@@ -15,6 +15,7 @@ final class SearchViewModel: ViewModelType {
     struct Input {
         let viewDidLoad: Observable<Void>
         let searchBarTerm: Signal<String>
+        let recentTermDidTap: Signal<Int>
         let searchItemDidTap: Signal<Int>
         let shouldLoadResult: Signal<Void>
     }
@@ -56,12 +57,35 @@ final class SearchViewModel: ViewModelType {
 
         input.searchBarTerm
             .emit(onNext: { [weak self] term in
-                guard let self = self else { return }
+                guard let self = self,
+                      output.currentTerm.value != term
+                else { return }
 
                 output.isEditingSearchBar.accept(true)
                 output.currentTerm.accept(term)
 
                 self.useCase.requestSearch(term: term)
+            })
+            .disposed(by: disposeBag)
+
+        input.recentTermDidTap
+            .asSignal()
+            .emit(onNext: { [weak self] index in
+                guard let self = self else { return }
+
+                let recentTerm = output.recentTerms.value[index]
+                output.currentTerm.accept(recentTerm.term)
+
+                output.isEditingSearchBar.accept(false)
+                self.useCase.requestSearch(term: recentTerm.term)
+
+                self.useCase.addRecentTerm(
+                    id: recentTerm.id,
+                    term: recentTerm.term
+                )
+
+                let recentTerms = self.useCase.getRecentTerms()
+                output.recentTerms.accept(recentTerms)
             })
             .disposed(by: disposeBag)
 
