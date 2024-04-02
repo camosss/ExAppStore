@@ -9,16 +9,22 @@ import UIKit
 
 final class TabBarCoordinator: Coordinator {
 
+    // MARK: - Properties
+
     weak var delegate: CoordinatorDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
     var tabBarController: UITabBarController
+
+    // MARK: - Init
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         navigationController.setNavigationBarHidden(true, animated: false)
         self.tabBarController = UITabBarController()
     }
+
+    // MARK: - Helpers
 
     func start() {
         let tabBarItems = TabBarItem.allCases

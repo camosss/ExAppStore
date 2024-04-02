@@ -9,15 +9,21 @@ import UIKit
 
 final class SearchCoordinator: NSObject, Coordinator {
 
+    // MARK: - Properties
+
     weak var delegate: CoordinatorDelegate?
     var childCoordinators = [Coordinator]()
     var navigationController: UINavigationController
+
+    // MARK: - Init
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
         super.init()
         self.navigationController.delegate = self
     }
+
+    // MARK: - Helpers
 
     func start() {
         let vc = SearchViewController(
