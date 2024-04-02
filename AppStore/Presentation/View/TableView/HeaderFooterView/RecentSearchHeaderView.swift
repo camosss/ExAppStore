@@ -23,9 +23,8 @@ final class RecentSearchHeaderView: BaseTableViewHeaderFooterView {
     override func setConstraints() {
         super.setConstraints()
         titleLabel.snp.makeConstraints { make in
-            make.top.trailing.equalToSuperview()
-            make.leading.equalTo(20)
-            make.bottom.equalToSuperview().inset(8)
+            make.top.bottom.equalToSuperview().inset(8)
+            make.leading.trailing.equalToSuperview().inset(20)
         }
     }
 

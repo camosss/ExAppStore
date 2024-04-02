@@ -8,8 +8,8 @@
 import Foundation
 
 struct RecentTermModel: RecentTermModelStore {
-    var id: String = ""
-    var term: String = ""
+    var id: String
+    var term: String
 
     init(id: String, term: String) {
         self.id = id

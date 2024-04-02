@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SearchCoordinator: Coordinator {
+final class SearchCoordinator: NSObject, Coordinator {
 
     weak var delegate: CoordinatorDelegate?
     var childCoordinators = [Coordinator]()
@@ -15,7 +15,8 @@ final class SearchCoordinator: Coordinator {
 
     init(_ navigationController: UINavigationController) {
         self.navigationController = navigationController
-        navigationController.setNavigationBarHidden(true, animated: false)
+        super.init()
+        self.navigationController.delegate = self
     }
 
     func start() {
@@ -36,7 +37,19 @@ final class SearchCoordinator: Coordinator {
 
     func showDetailAppInfoViewController(appInfo: AppInfo) {
         let vc = DetailAppInfoViewController(appInfo: appInfo)
-        navigationController.setNavigationBarHidden(true, animated: false)
+
+        navigationController.navigationBar.prefersLargeTitles = false
         navigationController.pushViewController(vc, animated: true)
+    }
+}
+
+// MARK: - UINavigationControllerDelegate
+extension SearchCoordinator: UINavigationControllerDelegate {
+    func navigationController(
+        _ navigationController: UINavigationController,
+        willShow viewController: UIViewController,
+        animated: Bool
+    ) {
+        navigationController.navigationBar.prefersLargeTitles = viewController is SearchViewController
     }
 }

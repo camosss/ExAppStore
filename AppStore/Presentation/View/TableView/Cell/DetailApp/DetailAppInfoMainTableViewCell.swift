@@ -74,7 +74,7 @@ final class DetailAppInfoMainTableViewCell: BaseTableViewCell<AppInfo> {
     override func setConstraints() {
         super.setConstraints()
         containerView.snp.makeConstraints { make in
-            make.top.equalTo(self.safeAreaLayoutGuide).offset(16)
+            make.top.equalTo(self.safeAreaLayoutGuide).offset(12)
             make.leading.trailing.equalToSuperview().inset(24)
         }
         iconImageView.snp.makeConstraints { make in

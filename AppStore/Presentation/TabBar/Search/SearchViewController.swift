@@ -20,7 +20,7 @@ final class SearchViewController: BaseViewController {
     private lazy var searchController = UISearchController(
         searchResultsController: resultsViewController
     )
-    private let tableView = UITableView()
+    private let tableView = UITableView(frame: .zero, style: .grouped)
 
     private let viewModel: SearchViewModel
     private let disposeBag = DisposeBag()
@@ -122,6 +122,7 @@ final class SearchViewController: BaseViewController {
 
     private func setTableView() {
         tableView.delegate = self
+        tableView.backgroundColor = .systemBackground
         tableView.rowHeight = UITableView.automaticDimension
         tableView.register(
             RecentSearchHeaderView.self,
