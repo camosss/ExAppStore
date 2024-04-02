@@ -93,21 +93,22 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         return button
     }()
 
+    private lazy var screenshotImageViews: [ScreenshotImageView] = {
+        var views = [ScreenshotImageView]()
+        for _ in 0..<3 {
+            let imageView = ScreenshotImageView()
+            views.append(imageView)
+        }
+        return views
+    }()
     private lazy var screenshotImageStackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [
-            firstScreenshotImageView,
-            secondScreenshotImageView,
-            thirdScreenshotImageView
-        ])
+        let stackView = UIStackView(arrangedSubviews: screenshotImageViews)
         stackView.translatesAutoresizingMaskIntoConstraints = false
         stackView.distribution = .fillEqually
         stackView.axis = .horizontal
         stackView.spacing = 4
         return stackView
     }()
-    private let firstScreenshotImageView = ScreenshotImageView()
-    private let secondScreenshotImageView = ScreenshotImageView()
-    private let thirdScreenshotImageView = ScreenshotImageView()
 
     // MARK: - Helpers
 
@@ -171,14 +172,10 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         }
 
         if let screenshotUrls = model?.screenshotUrls {
-            if screenshotUrls.indices.contains(0) {
-                firstScreenshotImageView.loadImage(with: screenshotUrls[0])
-            }
-            if screenshotUrls.indices.contains(1) {
-                secondScreenshotImageView.loadImage(with: screenshotUrls[1])
-            }
-            if screenshotUrls.indices.contains(2) {
-                thirdScreenshotImageView.loadImage(with: screenshotUrls[2])
+            for (index, imageView) in screenshotImageViews.enumerated() {
+                if index < screenshotUrls.count {
+                    imageView.loadImage(with: screenshotUrls[index])
+                }
             }
         }
     }
