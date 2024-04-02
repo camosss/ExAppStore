@@ -83,13 +83,10 @@ final class SearchViewModel: ViewModelType {
                 self.isEditingSearchBar.accept(false)
                 self.useCase.requestSearch(term: recentTerm.term)
 
-                self.useCase.addRecentTerm(
+                self.addRecentTerm(
                     id: recentTerm.id,
                     term: recentTerm.term
                 )
-
-                let recentTerms = self.useCase.getRecentTerms()
-                self.recentTerms.accept(recentTerms)
             })
             .disposed(by: disposeBag)
 
@@ -103,10 +100,7 @@ final class SearchViewModel: ViewModelType {
                    let term = appInfo.trackName {
                     let id = String(trackId)
 
-                    self.useCase.addRecentTerm(id: id, term: term)
-
-                    let recentTerms = self.useCase.getRecentTerms()
-                    self.recentTerms.accept(recentTerms)
+                    self.addRecentTerm(id: id, term: term)
                 }
 
                 if self.isEditingSearchBar.value {
@@ -134,13 +128,7 @@ final class SearchViewModel: ViewModelType {
                 let currentTerm = self.currentTerm.value
                 self.useCase.requestSearch(term: currentTerm)
 
-                self.useCase.addRecentTerm(
-                    id: UUID().uuidString,
-                    term: currentTerm
-                )
-
-                let recentTerms = self.useCase.getRecentTerms()
-                self.recentTerms.accept(recentTerms)
+                self.addRecentTerm(id: UUID().uuidString, term: currentTerm)
             })
             .disposed(by: disposeBag)
 
@@ -177,5 +165,14 @@ final class SearchViewModel: ViewModelType {
             appInfos: appInfos.asDriver(),
             recentTerms: recentTerms.asDriver()
         )
+    }
+}
+
+extension SearchViewModel {
+    private func addRecentTerm(id: String, term: String) {
+        self.useCase.addRecentTerm(id: id, term: term)
+
+        let recentTerms = self.useCase.getRecentTerms()
+        self.recentTerms.accept(recentTerms)
     }
 }
