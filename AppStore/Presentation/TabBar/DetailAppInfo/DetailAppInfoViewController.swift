@@ -9,8 +9,8 @@ import UIKit
 
 enum DetailAppInfoViewType: Int, CaseIterable {
     case main
-    case description
     case screenshot
+    case description
 }
 
 final class DetailAppInfoViewController: BaseViewController {
@@ -67,12 +67,12 @@ final class DetailAppInfoViewController: BaseViewController {
             forCellReuseIdentifier: DetailAppInfoMainTableViewCell.reuseIdentifier
         )
         tableView.register(
-            DetailAppInfoDescriptionTableViewCell.self,
-            forCellReuseIdentifier: DetailAppInfoDescriptionTableViewCell.reuseIdentifier
-        )
-        tableView.register(
             DetailAppInfoScreenshotListTableViewCell.self,
             forCellReuseIdentifier: DetailAppInfoScreenshotListTableViewCell.reuseIdentifier
+        )
+        tableView.register(
+            DetailAppInfoDescriptionTableViewCell.self,
+            forCellReuseIdentifier: DetailAppInfoDescriptionTableViewCell.reuseIdentifier
         )
     }
 }
@@ -108,19 +108,19 @@ extension DetailAppInfoViewController: UITableViewDataSource {
             cell.bind(appInfo)
             return cell
 
+        case .screenshot:
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: DetailAppInfoScreenshotListTableViewCell.reuseIdentifier
+            ) as! DetailAppInfoScreenshotListTableViewCell
+            cell.bind(appInfo.screenshotUrls)
+            return cell
+
         case .description:
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: DetailAppInfoDescriptionTableViewCell.reuseIdentifier
             ) as! DetailAppInfoDescriptionTableViewCell
             cell.delegate = self
             cell.bind(appInfo)
-            return cell
-
-        case .screenshot:
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: DetailAppInfoScreenshotListTableViewCell.reuseIdentifier
-            ) as! DetailAppInfoScreenshotListTableViewCell
-            cell.bind(appInfo.screenshotUrls)
             return cell
         }
     }
