@@ -59,7 +59,7 @@
 		B4EA32F22BB9610200BC3ECA /* UIViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F12BB9610200BC3ECA /* UIViewController+Rx.swift */; };
 		B4EA32F42BB9616900BC3ECA /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */; };
 		B4EA32F72BB9654900BC3ECA /* SearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */; };
-		B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */; };
+		B4EA32FA2BB965D500BC3ECA /* DefaultSearchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32F92BB965D500BC3ECA /* DefaultSearchUseCase.swift */; };
 		B4EA32FD2BB96A7100BC3ECA /* SearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */; };
 		B4EA32FF2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA32FE2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift */; };
 		B4EA33012BB9BB1900BC3ECA /* UIImageView+Ex.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */; };
@@ -138,7 +138,7 @@
 		B4EA32F12BB9610200BC3ECA /* UIViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Rx.swift"; sourceTree = "<group>"; };
 		B4EA32F32BB9616900BC3ECA /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		B4EA32F62BB9654900BC3ECA /* SearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCase.swift; sourceTree = "<group>"; };
-		B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchUseCaseImpl.swift; sourceTree = "<group>"; };
+		B4EA32F92BB965D500BC3ECA /* DefaultSearchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultSearchUseCase.swift; sourceTree = "<group>"; };
 		B4EA32FC2BB96A7100BC3ECA /* SearchResultSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultSection.swift; sourceTree = "<group>"; };
 		B4EA32FE2BB9A8D700BC3ECA /* SearchCompletedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCompletedTableViewCell.swift; sourceTree = "<group>"; };
 		B4EA33002BB9BB1900BC3ECA /* UIImageView+Ex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ex.swift"; sourceTree = "<group>"; };
@@ -569,7 +569,7 @@
 			isa = PBXGroup;
 			children = (
 				B4EA32F82BB965C400BC3ECA /* Protocol */,
-				B4EA32F92BB965D500BC3ECA /* SearchUseCaseImpl.swift */,
+				B4EA32F92BB965D500BC3ECA /* DefaultSearchUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -794,7 +794,7 @@
 				B4EA32D02BB87B2200BC3ECA /* RecentSearchTableViewCell.swift in Sources */,
 				B4AAE10B2BBB2A6100F0D721 /* UITableView+Rx.swift in Sources */,
 				B4EA32EE2BB960B000BC3ECA /* ViewModelType.swift in Sources */,
-				B4EA32FA2BB965D500BC3ECA /* SearchUseCaseImpl.swift in Sources */,
+				B4EA32FA2BB965D500BC3ECA /* DefaultSearchUseCase.swift in Sources */,
 				B4EA32C82BB876D500BC3ECA /* BaseTableViewCell.swift in Sources */,
 				B4AAE0D02BBAFCDE00F0D721 /* DetailAppInfoScreenshotListTableViewCell.swift in Sources */,
 				B4EA33012BB9BB1900BC3ECA /* UIImageView+Ex.swift in Sources */,

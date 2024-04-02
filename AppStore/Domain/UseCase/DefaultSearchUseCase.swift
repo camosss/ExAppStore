@@ -1,5 +1,5 @@
 //
-//  SearchUseCaseImpl.swift
+//  DefaultSearchUseCase.swift
 //  AppStore
 //
 //  Created by 강호성 on 3/31/24.
@@ -8,7 +8,7 @@
 import Foundation
 import RxCocoa
 
-final class SearchUseCaseImpl: SearchUseCase {
+final class DefaultSearchUseCase: SearchUseCase {
 
     private let searchRepository: SearchRepositoryType
     private let recentTermRepository: RecentTermStore
@@ -25,7 +25,7 @@ final class SearchUseCaseImpl: SearchUseCase {
     }
 }
 
-extension SearchUseCaseImpl {
+extension DefaultSearchUseCase {
     func requestSearch(term: String) {
         searchRepository.requestSearch(
             request: SearchRquest(term: term)

@@ -29,7 +29,7 @@ final class SearchCoordinator: NSObject, Coordinator {
         let vc = SearchViewController(
             viewModel: SearchViewModel(
                 coordinator: self,
-                useCase: SearchUseCaseImpl(
+                useCase: DefaultSearchUseCase(
                     searchRepository: SearchRepository(), 
                     recentTermRepository: RecentTermRepository()
                 )
