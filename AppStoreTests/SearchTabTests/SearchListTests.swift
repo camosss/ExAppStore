@@ -84,4 +84,142 @@ extension SearchTests {
              .next(10, expectedAppInfos)]
         )
     }
+
+    func test_검색어_입력중에는_검색중_화면_리스트를_보여주는지() {
+
+        let expectedValue: Bool = true
+
+        let searchBarTermObserver = self.scheduler.createColdObservable([.next(10, "카카오")])
+
+        self.input = SearchViewModel.Input(
+            viewDidLoad: .never(),
+            searchBarTerm: searchBarTermObserver.asSignal(onErrorJustReturn: ""),
+            recentTermDidTap: .never(),
+            searchItemDidTap: .never(),
+            shouldLoadResult: .never()
+        )
+
+        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+
+        self.viewModel.transform(input: input)
+            .isEditingSearchBar
+            .drive(isEditingSearchBarObserver)
+            .disposed(by: disposeBag)
+
+        self.scheduler.start()
+
+        XCTAssertEqual(
+            isEditingSearchBarObserver.events,
+            [.next(0, false),
+             .next(10, expectedValue)]
+        )
+    }
+
+    func test_최근_검색어_목록에서_특정_Cell을_선택하면_검색_결과_화면을_보여주는지() {
+
+        let expectedValue: Bool = false
+
+        self.mockUseCase.mockRecentTerms = [
+            RecentTermModel(id: "1", term: "카카오뱅크"),
+            RecentTermModel(id: "2", term: "카카오페이")
+        ]
+        self.viewModel = SearchViewModel(coordinator: nil, useCase: mockUseCase)
+
+        let viewDidLoadTrigger = self.scheduler.createColdObservable([.next(0, ())])
+
+        let recentTermDidTapObserver = self.scheduler.createColdObservable([.next(10, 1)])
+
+        self.input = SearchViewModel.Input(
+            viewDidLoad: viewDidLoadTrigger.asObservable(),
+            searchBarTerm: .never(),
+            recentTermDidTap: recentTermDidTapObserver.asSignal(onErrorJustReturn: -1),
+            searchItemDidTap: .never(),
+            shouldLoadResult: .never()
+        )
+
+        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+
+        self.viewModel.transform(input: input)
+            .isEditingSearchBar
+            .drive(isEditingSearchBarObserver)
+            .disposed(by: disposeBag)
+
+        self.scheduler.start()
+
+        XCTAssertEqual(
+            isEditingSearchBarObserver.events,
+            [.next(0, false),
+             .next(10, expectedValue)]
+        )
+    }
+
+    func test_검색어_입력중_화면에서_리스트의_특정_Cell을_선택하면_검색_결과_화면을_보여주는지() {
+
+        let expectedValue: Bool = false
+
+        let searchBarTermObserver = self.scheduler.createColdObservable([.next(0, "카카오")])
+        let searchItemDidTapObserver = self.scheduler.createColdObservable([.next(10, 1)])
+
+        self.mockUseCase.mockAppInfos = [
+            AppInfo(trackId: 2, trackName: "카카오페이"),
+            AppInfo(trackId: 3, trackName: "카카오")
+        ]
+        self.viewModel = SearchViewModel(coordinator: nil, useCase: mockUseCase)
+
+        self.input = SearchViewModel.Input(
+            viewDidLoad: .never(),
+            searchBarTerm: searchBarTermObserver.asSignal(onErrorJustReturn: ""),
+            recentTermDidTap: .never(),
+            searchItemDidTap: searchItemDidTapObserver.asSignal(onErrorJustReturn: 0),
+            shouldLoadResult: .never()
+        )
+
+        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+
+        self.viewModel.transform(input: input)
+            .isEditingSearchBar
+            .drive(isEditingSearchBarObserver)
+            .disposed(by: disposeBag)
+
+        self.scheduler.start()
+
+        XCTAssertEqual(
+            isEditingSearchBarObserver.events,
+            [.next(0, false),
+             .next(0, true), // 검색어 입력중
+             .next(10, expectedValue)]
+        )
+    }
+
+    func test_검색어_입력중_화면에서_키보드의_검색_버튼을_선택하면_검색_결과_화면을_보여주는지() {
+
+        let expectedValue: Bool = false
+
+        let searchBarTermObserver = self.scheduler.createColdObservable([.next(0, "카카오")])
+        let shouldLoadResultObserver = self.scheduler.createColdObservable([.next(10, ())])
+
+        self.input = SearchViewModel.Input(
+            viewDidLoad: .never(),
+            searchBarTerm: searchBarTermObserver.asSignal(onErrorJustReturn: ""),
+            recentTermDidTap: .never(),
+            searchItemDidTap: .never(),
+            shouldLoadResult: shouldLoadResultObserver.asSignal(onErrorJustReturn: ())
+        )
+
+        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+
+        self.viewModel.transform(input: input)
+            .isEditingSearchBar
+            .drive(isEditingSearchBarObserver)
+            .disposed(by: disposeBag)
+
+        self.scheduler.start()
+
+        XCTAssertEqual(
+            isEditingSearchBarObserver.events,
+            [.next(0, false),
+             .next(0, true), // 검색어 입력중
+             .next(10, expectedValue)]
+        )
+    }
 }
