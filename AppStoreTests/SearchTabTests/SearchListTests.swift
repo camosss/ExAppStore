@@ -87,8 +87,6 @@ extension SearchTests {
 
     func test_검색어_입력중에는_검색중_화면_리스트를_보여주는지() {
 
-        let expectedValue: Bool = true
-
         let searchBarTermObservable = self.scheduler.createColdObservable([.next(10, "카카오")])
 
         self.input = SearchViewModel.Input(
@@ -99,25 +97,30 @@ extension SearchTests {
             shouldLoadResult: .never()
         )
 
-        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
+        let searchResultViewTypeObserver = scheduler.createObserver([SearchResultViewType].self)
+        let viewTypeSubject = PublishSubject<[SearchResultViewType]>()
+
+        viewTypeSubject
+            .bind(to: searchResultViewTypeObserver)
+            .disposed(by: disposeBag)
 
         self.viewModel.transform(input: input)
-            .isSearchBarActive
-            .drive(isSearchBarActiveObserver)
+            .sections
+            .drive(onNext: { sections in
+                let viewTypes = sections.map { $0.model }
+                viewTypeSubject.onNext(viewTypes)
+            })
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
-        XCTAssertEqual(
-            isSearchBarActiveObserver.events,
-            [.next(0, false),
-             .next(10, expectedValue)]
-        )
+        XCTAssertEqual(searchResultViewTypeObserver.events, [
+            .next(0, []),
+            .next(10, [.searchingState])
+        ], "검색어 입력중에는 검색 결과 섹션의 모델이 searchingState 상태여야 합니다.")
     }
 
-    func test_최근_검색어_목록에서_특정_Cell을_선택하면_검색_결과_화면을_보여주는지() {
-
-        let expectedValue: Bool = false
+    func test_최근_검색어_목록에서_특정_index의_Cell을_선택하면_검색_결과_화면을_보여주는지() {
 
         self.mockUseCase.mockRecentTerms = [
             RecentTermModel(id: "1", term: "카카오뱅크"),
@@ -136,25 +139,30 @@ extension SearchTests {
             shouldLoadResult: .never()
         )
 
-        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
+        let searchResultViewTypeObserver = scheduler.createObserver([SearchResultViewType].self)
+        let viewTypeSubject = PublishSubject<[SearchResultViewType]>()
+
+        viewTypeSubject
+            .bind(to: searchResultViewTypeObserver)
+            .disposed(by: disposeBag)
 
         self.viewModel.transform(input: input)
-            .isSearchBarActive
-            .drive(isSearchBarActiveObserver)
+            .sections
+            .drive(onNext: { sections in
+                let viewTypes = sections.map { $0.model }
+                viewTypeSubject.onNext(viewTypes)
+            })
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
-        XCTAssertEqual(
-            isSearchBarActiveObserver.events,
-            [.next(0, false),
-             .next(10, expectedValue)]
-        )
+        XCTAssertEqual(searchResultViewTypeObserver.events, [
+            .next(0, []),
+            .next(10, [.searchCompleted])
+        ], "선택된 최근 검색어에 대한 검색 결과 섹션의 모델이 searchCompleted 상태여야 합니다.")
     }
 
-    func test_검색어_입력중_화면에서_리스트의_특정_Cell을_선택하면_검색_결과_화면을_보여주는지() {
-
-        let expectedValue: Bool = false
+    func test_검색어_입력중_화면에서_리스트의_특정_index의_Cell을_선택하면_검색_결과_화면을_보여주는지() {
 
         let searchBarTermObservable = self.scheduler.createColdObservable([.next(0, "카카오")])
         let searchItemDidTapObservable = self.scheduler.createColdObservable([.next(10, 1)])
@@ -173,26 +181,31 @@ extension SearchTests {
             shouldLoadResult: .never()
         )
 
-        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
+        let searchResultViewTypeObserver = scheduler.createObserver([SearchResultViewType].self)
+        let viewTypeSubject = PublishSubject<[SearchResultViewType]>()
+
+        viewTypeSubject
+            .bind(to: searchResultViewTypeObserver)
+            .disposed(by: disposeBag)
 
         self.viewModel.transform(input: input)
-            .isSearchBarActive
-            .drive(isSearchBarActiveObserver)
+            .sections
+            .drive(onNext: { sections in
+                let viewTypes = sections.map { $0.model }
+                viewTypeSubject.onNext(viewTypes)
+            })
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
-        XCTAssertEqual(
-            isSearchBarActiveObserver.events,
-            [.next(0, false),
-             .next(0, true), // 검색어 입력중
-             .next(10, expectedValue)]
-        )
+        XCTAssertEqual(searchResultViewTypeObserver.events, [
+            .next(0, []),
+            .next(0, [.searchingState]), // 검색어 입력중
+            .next(10, [.searchCompleted])
+        ], "검색어 입력중 화면에서 특정 index의 Cell을 선택하면 검색 결과 섹션의 모델이 searchCompleted 상태여야 합니다.")
     }
 
     func test_검색어_입력중_화면에서_키보드의_검색_버튼을_선택하면_검색_결과_화면을_보여주는지() {
-
-        let expectedValue: Bool = false
 
         let searchBarTermObservable = self.scheduler.createColdObservable([.next(0, "카카오")])
         let shouldLoadResultObservable = self.scheduler.createColdObservable([.next(10, ())])
@@ -205,20 +218,27 @@ extension SearchTests {
             shouldLoadResult: shouldLoadResultObservable.asSignal(onErrorJustReturn: ())
         )
 
-        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
+        let searchResultViewTypeObserver = scheduler.createObserver([SearchResultViewType].self)
+        let viewTypeSubject = PublishSubject<[SearchResultViewType]>()
+
+        viewTypeSubject
+            .bind(to: searchResultViewTypeObserver)
+            .disposed(by: disposeBag)
 
         self.viewModel.transform(input: input)
-            .isSearchBarActive
-            .drive(isSearchBarActiveObserver)
+            .sections
+            .drive(onNext: { sections in
+                let viewTypes = sections.map { $0.model }
+                viewTypeSubject.onNext(viewTypes)
+            })
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
-        XCTAssertEqual(
-            isSearchBarActiveObserver.events,
-            [.next(0, false),
-             .next(0, true), // 검색어 입력중
-             .next(10, expectedValue)]
-        )
+        XCTAssertEqual(searchResultViewTypeObserver.events, [
+            .next(0, []),
+            .next(0, [.searchingState]), // 검색어 입력중
+            .next(10, [.searchCompleted])
+        ], "검색어 입력중 화면에서 키보드의 검색 버튼을 선택하면 검색 결과 섹션의 모델이 searchCompleted 상태여야 합니다.")
     }
 }
