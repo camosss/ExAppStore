@@ -11,6 +11,9 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
 
     // MARK: - Properties
 
+    var onHeightUpdated: (() -> Void)?
+
+    private var maxHeight: CGFloat = 0
     private var screenshotUrls: [String] = []
 
     private lazy var collectionView = UICollectionView(
@@ -29,9 +32,7 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
         super.setConstraints()
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-
-            // FIXME: AutoLayout
-            make.height.equalTo(430)
+            make.height.equalTo(0)
         }
     }
 
@@ -52,12 +53,25 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
         )
     }
 
+    override func bind(_ model: [String]?) {
+        super.bind(model)
+
+        guard let model = model, !model.isEmpty else {
+            return
+        }
+
+        self.screenshotUrls = model
+        self.adjustCollectionViewHeight(for: model)
+        self.collectionView.reloadData()
+    }
+
     private func createCompositionalLayout() -> UICollectionViewLayout {
-        return UICollectionViewCompositionalLayout { (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
+        return UICollectionViewCompositionalLayout { 
+            (sectionIndex, layoutEnvironment) -> NSCollectionLayoutSection? in
 
             let itemSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .fractionalHeight(1)
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .fractionalHeight(1.0)
             )
             let item = NSCollectionLayoutItem(layoutSize: itemSize)
             item.contentInsets.trailing = 10
@@ -76,12 +90,48 @@ final class DetailAppInfoScreenshotListTableViewCell: BaseTableViewCell<[String]
         }
     }
 
-    override func bind(_ model: [String]?) {
-        super.bind(model)
+    private func adjustCollectionViewHeight(for urls: [String]) {
+        let expectedImageViewWidth = (UIScreen.main.bounds.width + 10) * 0.6
 
-        if let model = model {
-            self.screenshotUrls = model
-            self.collectionView.reloadData()
+        for urlString in urls {
+
+            loadImage(
+                for: urlString,
+                imageViewWidth: expectedImageViewWidth
+            ) { [weak self] calculatedHeight in
+                guard let self = self,
+                      let calculatedHeight = calculatedHeight
+                else { return }
+
+                if calculatedHeight > self.maxHeight {
+                    self.maxHeight = calculatedHeight
+
+                    DispatchQueue.main.async {
+                        self.collectionView.snp.updateConstraints { make in
+                            make.height.equalTo(self.maxHeight)
+                        }
+                        self.onHeightUpdated?()
+                    }
+                }
+            }
+        }
+    }
+
+    private func loadImage(
+        for urlString: String,
+        imageViewWidth: CGFloat,
+        completion: @escaping (CGFloat?) -> Void
+    ) {
+        let dummyImageView = UIImageView()
+        dummyImageView.loadImage(with: urlString) { imageSize in
+            guard let size = imageSize else {
+                completion(nil)
+                return
+            }
+
+            let aspectRatio = size.height / size.width
+            let calculatedHeight = imageViewWidth * aspectRatio
+            completion(calculatedHeight)
         }
     }
 }

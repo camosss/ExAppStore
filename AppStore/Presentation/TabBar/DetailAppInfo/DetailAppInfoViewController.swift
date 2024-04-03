@@ -113,6 +113,10 @@ extension DetailAppInfoViewController: UITableViewDataSource {
                 withIdentifier: DetailAppInfoScreenshotListTableViewCell.reuseIdentifier
             ) as! DetailAppInfoScreenshotListTableViewCell
             cell.bind(appInfo.screenshotUrls)
+            cell.onHeightUpdated = { [weak tableView] in
+                tableView?.beginUpdates()
+                tableView?.endUpdates()
+            }
             return cell
 
         case .description:

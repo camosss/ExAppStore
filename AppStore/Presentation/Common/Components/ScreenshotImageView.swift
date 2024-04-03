@@ -28,6 +28,6 @@ final class ScreenshotImageView: UIImageView {
         self.layer.cornerRadius = 8
         self.layer.borderColor = UIColor.systemGray6.cgColor
         self.layer.borderWidth = 1
-        self.contentMode = .scaleAspectFit
+        self.contentMode = .scaleAspectFill
     }
 }

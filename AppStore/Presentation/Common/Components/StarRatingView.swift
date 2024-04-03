@@ -57,6 +57,7 @@ final class StarRatingView: BaseView {
 
     override func setConfigurations() {
         super.setConfigurations()
+        self.isUserInteractionEnabled = false
 
         for _ in 0..<endNumber {
             let button = UIButton()

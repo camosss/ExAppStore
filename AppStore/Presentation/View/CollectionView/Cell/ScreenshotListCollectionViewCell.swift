@@ -22,7 +22,6 @@ final class ScreenshotListCollectionViewCell: BaseCollectionViewCell<String> {
 
     override func setConstraints() {
         super.setConstraints()
-        screenshotImageView.backgroundColor = .systemGray3
         screenshotImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
