@@ -43,6 +43,9 @@ final class SearchViewController: BaseViewController {
     )
     private lazy var output = viewModel.transform(input: input)
 
+    // MARK: - DataSource
+
+    /// 최근 검색어 목록
     private lazy var recentTermDataSource = RxTableViewSectionedReloadDataSource<
         RecentTermModelSection.RecentTermModelSectionModel
     >(configureCell: { dataSource, tableView, indexPath, item in
@@ -57,6 +60,7 @@ final class SearchViewController: BaseViewController {
         }
     })
 
+    /// 검색 리스트
     private lazy var searchDataSource = RxTableViewSectionedReloadDataSource<
         SearchResultSection.SearchResultSectionModel
     >(configureCell: { dataSource, tableView, indexPath, item in
