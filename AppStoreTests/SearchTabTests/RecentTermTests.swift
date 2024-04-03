@@ -51,10 +51,10 @@ extension RecentTermTests {
         self.mockUseCase.mockRecentTerms = [RecentTermModel(id: "1", term: "카카오뱅크")]
         self.viewModel = SearchViewModel(coordinator: nil, useCase: mockUseCase)
 
-        let viewDidLoadTrigger = self.scheduler.createColdObservable([.next(10, ())])
+        let viewDidLoadObservable = self.scheduler.createColdObservable([.next(10, ())])
 
         self.input = SearchViewModel.Input(
-            viewDidLoad: viewDidLoadTrigger.asObservable(),
+            viewDidLoad: viewDidLoadObservable.asObservable(),
             searchBarTerm: .never(),
             recentTermDidTap: .never(),
             searchItemDidTap: .never(),
@@ -91,16 +91,16 @@ extension RecentTermTests {
         ]
         self.viewModel = SearchViewModel(coordinator: nil, useCase: mockUseCase)
 
-        let searchBarTermObserver = self.scheduler.createColdObservable([.next(0, "카카오")])
+        let searchBarTermObservable = self.scheduler.createColdObservable([.next(0, "카카오")])
 
         // mockAppInfos의 1번 index인 AppInfo(trackId: 3, trackName: "카카오")를 선택
-        let searchItemDidTapObserver = self.scheduler.createColdObservable([.next(10, 1)])
+        let searchItemDidTapObservable = self.scheduler.createColdObservable([.next(10, 1)])
 
         self.input = SearchViewModel.Input(
             viewDidLoad: .never(),
-            searchBarTerm: searchBarTermObserver.asSignal(onErrorJustReturn: ""),
+            searchBarTerm: searchBarTermObservable.asSignal(onErrorJustReturn: ""),
             recentTermDidTap: .never(),
-            searchItemDidTap: searchItemDidTapObserver.asSignal(onErrorJustReturn: 0),
+            searchItemDidTap: searchItemDidTapObservable.asSignal(onErrorJustReturn: 0),
             shouldLoadResult: .never()
         )
 
@@ -127,15 +127,15 @@ extension RecentTermTests {
         self.mockUseCase.mockRecentTerms = [RecentTermModel(id: "1", term: "카카오뱅크")]
         self.viewModel = SearchViewModel(coordinator: nil, useCase: mockUseCase)
 
-        let searchBarTermObserver = self.scheduler.createColdObservable([.next(0, "카카")])
-        let shouldLoadResultObserver = self.scheduler.createColdObservable([.next(10, ())])
+        let searchBarTermObservable = self.scheduler.createColdObservable([.next(0, "카카")])
+        let shouldLoadResultObservable = self.scheduler.createColdObservable([.next(10, ())])
 
         self.input = SearchViewModel.Input(
             viewDidLoad: .never(),
-            searchBarTerm: searchBarTermObserver.asSignal(onErrorJustReturn: ""),
+            searchBarTerm: searchBarTermObservable.asSignal(onErrorJustReturn: ""),
             recentTermDidTap: .never(),
             searchItemDidTap: .never(),
-            shouldLoadResult: shouldLoadResultObserver.asSignal(onErrorJustReturn: ())
+            shouldLoadResult: shouldLoadResultObservable.asSignal(onErrorJustReturn: ())
         )
 
         let recentTermsObserver = self.scheduler.createObserver([String].self)
