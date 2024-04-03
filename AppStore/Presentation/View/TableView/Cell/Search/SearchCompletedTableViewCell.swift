@@ -11,15 +11,22 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
 
     // MARK: - Properties
 
+    var onHeightUpdated: (() -> Void)?
+
     private lazy var containerView: UIView = {
         let view = UIView()
-        view.addSubview(iconImageView)
+        view.addSubview(iconImageContainerView)
         view.addSubview(infoContainerStackView)
         view.addSubview(buttonContainerView)
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
 
+    private lazy var iconImageContainerView: UIView = {
+        let view = UIView()
+        view.addSubview(iconImageView)
+        return view
+    }()
     private let iconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
@@ -132,17 +139,18 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         screenshotImageStackView.snp.makeConstraints { make in
             make.top.equalTo(containerView.snp.bottom).offset(12)
             make.leading.trailing.bottom.equalToSuperview().inset(24)
-
-            // FIXME: AutoLayout
-            make.height.equalTo(200)
+            make.height.equalTo(0)
+        }
+        iconImageContainerView.snp.makeConstraints { make in
+            make.top.leading.bottom.equalToSuperview()
         }
         iconImageView.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.size.equalTo(48)
         }
         infoContainerStackView.snp.makeConstraints { make in
             make.top.equalTo(4)
-            make.leading.equalTo(iconImageView.snp.trailing).offset(8)
+            make.leading.equalTo(iconImageContainerView.snp.trailing).offset(8)
             make.bottom.equalToSuperview()
         }
         buttonContainerView.snp.makeConstraints { make in
@@ -182,9 +190,46 @@ final class SearchCompletedTableViewCell: BaseTableViewCell<AppInfo> {
         }
 
         if let screenshotUrls = model?.screenshotUrls {
-            for (index, imageView) in screenshotImageViews.enumerated() {
-                if index < screenshotUrls.count {
-                    imageView.loadImage(with: screenshotUrls[index])
+            let totalSpacing = screenshotImageStackView.spacing * 2
+            let totalMargin: CGFloat = 48
+            let availableWidth = UIScreen.main.bounds.width - totalMargin - totalSpacing
+            let imageViewWidth = availableWidth / 3
+
+            loadAndAdjustImages(
+                with: screenshotUrls,
+                imageViewWidth: imageViewWidth
+            )
+        }
+    }
+
+    private func loadAndAdjustImages(
+        with screenshotUrls: [String],
+        imageViewWidth: CGFloat
+    ) {
+        var maxHeight: Int = 0
+
+        for (index, imageView) in screenshotImageViews.enumerated() {
+            if index < screenshotUrls.count {
+
+                imageView.loadImage(with: screenshotUrls[index]) { [weak self] imageSize in
+                    guard let self = self, let size = imageSize else { return }
+
+                    let aspectRatio = size.height / size.width
+                    let calculatedHeight = Int(imageViewWidth * aspectRatio)
+                    let screenshotStackViewHeight = Int(self.screenshotImageStackView.frame.height)
+
+                    DispatchQueue.main.async {
+                        if calculatedHeight > maxHeight &&
+                            screenshotStackViewHeight != calculatedHeight {
+
+                            maxHeight = calculatedHeight
+
+                            self.screenshotImageStackView.snp.updateConstraints { make in
+                                make.height.equalTo(maxHeight)
+                            }
+                            self.onHeightUpdated?()
+                        }
+                    }
                 }
             }
         }

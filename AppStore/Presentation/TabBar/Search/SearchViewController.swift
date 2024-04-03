@@ -76,7 +76,12 @@ final class SearchViewController: BaseViewController {
             let cell = tableView.dequeueReusableCell(
                 withIdentifier: SearchCompletedTableViewCell.reuseIdentifier
             ) as! SearchCompletedTableViewCell
+
             cell.bind(appInfo)
+            cell.onHeightUpdated = { [weak tableView] in
+                tableView?.beginUpdates()
+                tableView?.endUpdates()
+            }
             return cell
         }
     })
