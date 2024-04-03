@@ -164,7 +164,7 @@ extension SearchViewController {
             .drive(resultsViewController.tableView.rx.items(dataSource: searchDataSource))
             .disposed(by: disposeBag)
 
-        output.isEditingSearchBar
+        output.isSearchBarActive
             .asDriver()
             .drive(onNext: { [weak self] isEditing in
                 guard let self = self,

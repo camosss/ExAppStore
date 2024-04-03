@@ -99,17 +99,17 @@ extension SearchTests {
             shouldLoadResult: .never()
         )
 
-        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
 
         self.viewModel.transform(input: input)
-            .isEditingSearchBar
-            .drive(isEditingSearchBarObserver)
+            .isSearchBarActive
+            .drive(isSearchBarActiveObserver)
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
         XCTAssertEqual(
-            isEditingSearchBarObserver.events,
+            isSearchBarActiveObserver.events,
             [.next(0, false),
              .next(10, expectedValue)]
         )
@@ -136,17 +136,17 @@ extension SearchTests {
             shouldLoadResult: .never()
         )
 
-        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
 
         self.viewModel.transform(input: input)
-            .isEditingSearchBar
-            .drive(isEditingSearchBarObserver)
+            .isSearchBarActive
+            .drive(isSearchBarActiveObserver)
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
         XCTAssertEqual(
-            isEditingSearchBarObserver.events,
+            isSearchBarActiveObserver.events,
             [.next(0, false),
              .next(10, expectedValue)]
         )
@@ -173,17 +173,17 @@ extension SearchTests {
             shouldLoadResult: .never()
         )
 
-        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
 
         self.viewModel.transform(input: input)
-            .isEditingSearchBar
-            .drive(isEditingSearchBarObserver)
+            .isSearchBarActive
+            .drive(isSearchBarActiveObserver)
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
         XCTAssertEqual(
-            isEditingSearchBarObserver.events,
+            isSearchBarActiveObserver.events,
             [.next(0, false),
              .next(0, true), // 검색어 입력중
              .next(10, expectedValue)]
@@ -205,17 +205,17 @@ extension SearchTests {
             shouldLoadResult: shouldLoadResultObservable.asSignal(onErrorJustReturn: ())
         )
 
-        let isEditingSearchBarObserver = self.scheduler.createObserver(Bool.self)
+        let isSearchBarActiveObserver = self.scheduler.createObserver(Bool.self)
 
         self.viewModel.transform(input: input)
-            .isEditingSearchBar
-            .drive(isEditingSearchBarObserver)
+            .isSearchBarActive
+            .drive(isSearchBarActiveObserver)
             .disposed(by: disposeBag)
 
         self.scheduler.start()
 
         XCTAssertEqual(
-            isEditingSearchBarObserver.events,
+            isSearchBarActiveObserver.events,
             [.next(0, false),
              .next(0, true), // 검색어 입력중
              .next(10, expectedValue)]

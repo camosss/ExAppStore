@@ -20,7 +20,7 @@ final class SearchViewModel: ViewModelType {
         let shouldLoadResult: Signal<Void>
     }
     struct Output {
-        let isEditingSearchBar: Driver<Bool>
+        let isSearchBarActive: Driver<Bool>
         let currentTerm: Driver<String>
         let sections: Driver<[SearchResultSection.SearchResultSectionModel]>
         let appInfos: Driver<[AppInfo]>
@@ -31,7 +31,7 @@ final class SearchViewModel: ViewModelType {
     private let useCase: SearchUseCase
     var disposeBag = DisposeBag()
 
-    private let isEditingSearchBar = BehaviorRelay<Bool>(value: false)
+    private let isSearchBarActive = BehaviorRelay<Bool>(value: false)
     private let currentTerm = BehaviorRelay<String>(value: "")
     private let sections = BehaviorRelay<[SearchResultSection.SearchResultSectionModel]>(value: [])
     private let appInfos = BehaviorRelay<[AppInfo]>(value: [])
@@ -65,7 +65,7 @@ final class SearchViewModel: ViewModelType {
                       self.currentTerm.value != term
                 else { return }
 
-                self.isEditingSearchBar.accept(true)
+                self.isSearchBarActive.accept(true)
                 self.currentTerm.accept(term)
 
                 self.useCase.requestSearch(term: term)
@@ -80,7 +80,7 @@ final class SearchViewModel: ViewModelType {
                 let recentTerm = self.recentTerms.value[index]
                 self.currentTerm.accept(recentTerm.term)
 
-                self.isEditingSearchBar.accept(false)
+                self.isSearchBarActive.accept(false)
                 self.useCase.requestSearch(term: recentTerm.term)
 
                 self.addRecentTerm(
@@ -96,8 +96,8 @@ final class SearchViewModel: ViewModelType {
 
                 let appInfo = self.appInfos.value[index]
 
-                if self.isEditingSearchBar.value {
-                    self.isEditingSearchBar.accept(false)
+                if self.isSearchBarActive.value {
+                    self.isSearchBarActive.accept(false)
 
                     if let trackId = appInfo.trackId,
                        let term = appInfo.trackName {
@@ -120,7 +120,7 @@ final class SearchViewModel: ViewModelType {
             .emit(onNext: { [weak self] _ in
                 guard let self = self else { return }
 
-                self.isEditingSearchBar.accept(false)
+                self.isSearchBarActive.accept(false)
 
                 let currentTerm = self.currentTerm.value
                 self.useCase.requestSearch(term: currentTerm)
@@ -138,7 +138,7 @@ final class SearchViewModel: ViewModelType {
 
                 var section: [SearchResultSection.SearchResultSectionModel]
 
-                if self.isEditingSearchBar.value {
+                if self.isSearchBarActive.value {
                     section = [.init(
                         model: .searchingState,
                         items: searchResults.results.map { .searchingState($0) }
@@ -156,7 +156,7 @@ final class SearchViewModel: ViewModelType {
             .disposed(by: disposeBag)
 
         return Output(
-            isEditingSearchBar: isEditingSearchBar.asDriver(),
+            isSearchBarActive: isSearchBarActive.asDriver(),
             currentTerm: currentTerm.asDriver(),
             sections: sections.asDriver(),
             appInfos: appInfos.asDriver(),
