@@ -136,22 +136,24 @@ final class SearchViewModel: ViewModelType {
 
                 self.appInfos.accept(searchResults.results)
 
-                var section: [SearchResultSection.SearchResultSectionModel]
+                let items = searchResults.results.map { result -> SearchResultSection.AppInfoItems in
+                    let viewType: SearchResultViewType = self.isSearchBarActive.value ?
+                        .searchingState : .searchCompleted
 
-                if self.isSearchBarActive.value {
-                    section = [.init(
-                        model: .searchingState,
-                        items: searchResults.results.map { .searchingState($0) }
-                    )]
-
-                } else {
-                    section = [.init(
-                        model: .searchCompleted,
-                        items: searchResults.results.map { .searchCompleted($0) }
-                    )]
+                    switch viewType {
+                    case .searchingState:
+                        return .searchingState(result)
+                    case .searchCompleted:
+                        return .searchCompleted(result)
+                    }
                 }
 
-                self.sections.accept(section)
+                let sectionModel = SearchResultSection.SearchResultSectionModel(
+                    model: self.isSearchBarActive.value ? .searchingState : .searchCompleted,
+                    items: items
+                )
+
+                self.sections.accept([sectionModel])
             })
             .disposed(by: disposeBag)
 
